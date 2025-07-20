@@ -1,0 +1,34 @@
+# Node dependencies
+node_modules/
+.cache/
+dist/
+.parcel-cache/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Mac system files
+*.DS_Store
+
+# Optional log output
+*.log
+
+# Ignore build output; add 'dist/' only if you don't want to track built files in your main branch
+# Remove 'dist/' if you want to commit built files to special deploy branches only.
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
