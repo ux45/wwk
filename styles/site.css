@@ -14,7 +14,6 @@
   --peach: #ffe3d3;
   --taupe: #e8e5dc;
   --violet: #eadffa;
-  --sapphire: #008197;
   --teal: #0097a9;
   --success-green: #3b7a2e;
   --panel-blue: #e3f1f3;
@@ -53,11 +52,11 @@ h6 {
 }
 
 h1 {
-  font-size: 3rem; /* ~48px */
+  font-size: 3rem;
 }
 
 h2 {
-  font-size: 2.25rem; /* ~36px */
+  font-size: 2.25rem;
 }
 
 h3 {
@@ -87,7 +86,7 @@ h6 {
 .site-header,
 .page-content-wrapper {
   width: 100%;
-  max-width: 1540px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
@@ -107,7 +106,7 @@ h6 {
 .navbar-nav .nav-link {
   color: var(--primary-blue);
   font-weight: 600;
-  font-size: 1.25rem; /* ~23px */
+  font-size: 1.25rem;
   padding: 0.5rem 1rem;
 }
 .navbar-nav.dot-separated .nav-item:not(:last-child) .nav-link::after {
@@ -127,6 +126,7 @@ h6 {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  max-width: 1414px;
 }
 .page-content-inner {
   width: 100%;
@@ -186,18 +186,30 @@ h6 {
   font-size: 50px;
 }
 .cta-lead {
-  color: #e76924;
-  font-size: 2.75rem; /* 44px */
+  color: var(--primary-orange);
+  font-size: 2.75rem;
   font-weight: bold;
 }
 .cta-btn {
-  background: #e76924;
+  background: var(--primary-orange);
   color: #fff;
   font-weight: bold;
-  font-size: 2.5rem; /* 40px */
-  border-radius: 1.875rem; /* 30px */
-  padding: 0.8125rem 1.6875rem; /* 13px 27px */
+  font-size: 2.5rem;
+  border-radius: 1.875rem;
+  padding: 0.8125rem 1.6875rem;
   margin: 1rem auto;
+}
+
+/* Utility background colors */
+.bg-light-blue {
+  background-color: var(--light-blue) !important;
+}
+.bg-light-yellow {
+  background-color: var(--panel-yellow) !important;
+}
+.bg-orange {
+  background-color: var(--primary-orange) !important;
+  color: #fff !important;
 }
 
 /* Hero Section - Global */
@@ -223,7 +235,7 @@ h6 {
 }
 .hero-subheading {
   color: var(--primary-orange);
-  font-size: 1.875rem; /* 30px = 1.875rem */
+  font-size: 1.875rem;
   font-family: "Nunito", Arial, sans-serif;
   font-weight: 400;
 }
@@ -249,8 +261,12 @@ h6 {
   font-size: 2.5rem;
   font-weight: bold;
 }
+.sub-header2-teal {
+  color: var(--teal);
+  font-size: 1.6rem;
+}
 .hero-icon-caption {
-  font-size: 1.75rem; /* ~28px */
+  font-size: 1.75rem;
   color: var(--secondary-blue);
   max-width: 328px;
 }
@@ -425,7 +441,7 @@ h6 {
 .families-love-our {
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
-  font-size: 2.5rem; /* 40px -> 2.5rem */
+  font-size: 2.5rem;
   color: var(--primary-orange);
   font-family: var(--font-main);
   text-align: left;
@@ -435,8 +451,8 @@ h6 {
   border-radius: 10px;
   background-color: rgba(177, 179, 182, 0.19);
   width: 100%;
-  min-height: 17.5rem; /* 280px -> 17.5rem */
-  height: 22.56rem; /* 361px -> 22.56rem */
+  min-height: 17.5rem;
+  height: 22.56rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -445,7 +461,7 @@ h6 {
 }
 .star-group,
 .review-box .mb-2 {
-  height: 2.125rem; /* 34px -> 2.125rem */
+  height: 2.125rem;
   margin-bottom: 0.5rem;
 }
 .add-customer-review {
@@ -496,7 +512,7 @@ h6 {
   .review-box {
     max-width: 100%;
     height: auto;
-    min-height: 13.75rem; /* 220px -> 13.75rem */
+    min-height: 13.75rem;
   }
 }
 
@@ -527,7 +543,7 @@ h6 {
   }
 }
 .btn-wwk-orange {
-  background: #e76924;
+  background: var(--primary-orange);
   color: #fff;
   font-weight: 600;
   border-radius: 16px;
@@ -575,8 +591,8 @@ h6 {
   font-weight: 600;
   display: flex;
   flex-direction: column;
-  align-items: center; /* center horizontally */
-  justify-content: flex-start; /* align to top vertically */
+  align-items: center;
+  justify-content: flex-start;
 }
 
 /* Hero icon row - Why We Listen Page */
@@ -589,7 +605,7 @@ h6 {
   height: auto;
 }
 .audible-only .hero-icon-caption {
-  color: #008197;
+  color: var(--primary-blue);
 }
 .audible-only .why-promo-icon {
   max-width: 161px;
@@ -625,7 +641,7 @@ h6 {
   height: auto;
 }
 .fav-keep .hero-icon-caption {
-  color: #e76924;
+  color: var(--primary-orange);
 }
 .fav-keep .first-line {
   display: block;
@@ -650,38 +666,38 @@ h6 {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 3.75rem 0; /* 60px 0 */
+  margin: 3.75rem 0;
 }
 .story-time-box-left {
-  border: 0.375rem solid #fff5c9; /* 6px */
-  border-radius: 1.25rem 0 0 1.25rem; /* 20px 0 0 20px */
+  border: 0.375rem solid #fff5c9;
+  border-radius: 1.25rem 0 0 1.25rem;
   border-right: transparent;
-  padding: 2.5rem 4rem 2rem 3.5rem; /* 40px 64px 32px 56px */
+  padding: 2.5rem 4rem 2rem 3.5rem;
   text-align: left;
   color: #3b5c83;
 }
 .story-time-box-left h2.hero-heading-2 {
-  color: #e76924;
+  color: var(--primary-orange);
   text-align: left;
   margin: 0;
   padding-top: 0;
 }
 .story-time-box-left .story-time-lead {
-  margin-top: 1.75rem; /* 28px */
-  font-size: 1.6rem; /* 25.6px */
+  margin-top: 1.75rem;
+  font-size: 1.6rem;
   color: #3b5c83;
 }
 
 /* Storytelling quote background box - Why We Listen Page */
 .storytelling-quote-bg {
-  border-radius: 1.875rem; /* 30px */
+  border-radius: 1.875rem;
   background-color: #fff5c9;
-  padding: 3.0625rem 2.125rem; /* 49px 34px */
+  padding: 3.0625rem 2.125rem;
 }
 
 /* Storytelling quote image - Why We Listen Page */
 .storytelling-quote-bg .img-fluid {
-  max-width: 24.75rem; /* 396px */
+  max-width: 24.75rem;
   height: auto;
 }
 
@@ -708,7 +724,7 @@ h6 {
   border-radius: 0 0 18px 18px;
 }
 .stories-categories-intro {
-  color: var(--sapphire);
+  color: var(--primary-blue);
   font-size: 1.75rem;
   margin: 1.25rem auto 2.5rem;
   text-align: center;
@@ -722,6 +738,11 @@ h6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   flex-wrap: wrap;
+}
+.stories-category-row img {
+  width: 190px !important;
+  height: 190px !important;
+  object-fit: contain;
 }
 .stories-categories-panel .stories-category-label {
   font-size: 1.5rem;
@@ -741,7 +762,7 @@ h6 {
   color: #7a3b7a;
 }
 .stories-category-label.silly {
-  color: #e76924;
+  color: var(--primary-orange);
 }
 
 /* Favorites section - Stories page */
@@ -816,8 +837,8 @@ h6 {
 .listen-app-panel {
   background: url("../assets/app-hero-background.png") 100% 0 no-repeat var(--light-blue);
   background-size: 95%;
-  border-radius: 1.125rem; /* 18px */
-  border: 0.09375rem solid #d6f0f5; /* 1.5px */
+  border-radius: 1.125rem;
+  border: 0.09375rem solid #d6f0f5;
   margin: 0 auto 1.5rem;
   width: 100%;
   align-items: left;
@@ -868,71 +889,97 @@ h6 {
 .listen-app-panel-note {
   background: var(--teal);
   color: #fff;
-  border-radius: 0 0 1rem 1rem; /* 0 0 16px 16px */
+  border-radius: 0 0 1rem 1rem;
   font-size: 1.8rem;
   font-weight: 500;
   padding: 10px 20px;
 }
 .listen-subscribe-panel {
-  background: var(--panel-yellow);
-  border-radius: 1rem; /* 16px */
-  border: 0.09375rem solid #ffe6b3; /* 1.5px */
-  margin-bottom: 2rem;
+  border-radius: 30px;
+  border: 6px solid var(--panel-blue);
+  margin: 40px auto 0;
 }
 .listen-subscribe-header.hero-subheading.orange-bg {
   text-align: center;
   font-size: 2.55rem;
-  font-weight: 600;
+  font-weight: bold;
+  margin: -6px -6px 0;
+  border-radius: 30px 30px 0 0;
 }
-.listen-subscribe-sub {
-  font-size: 1.1rem; /* 17.6px */
-  color: var(--primary-blue);
-  padding: 1rem 1rem 0.5rem 1rem; /* 16px 16px 8px 16px */
+.join-plan {
+  font-size: 2.1rem;
+  margin: 5px auto 30px;
+  text-align: center;
+  padding: 15px;
+}
+.story-plans-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3.25rem;
+  padding-bottom: 1rem;
 }
 .listen-plan-box {
-  background: #fffbe6;
-  border-radius: 0.75rem; /* 12px */
-  min-width: 11.25rem; /* 180px */
-  max-width: 13.75rem; /* 220px */
-  padding: 1.5rem 1rem; /* 24px 16px */
-  margin-bottom: 1rem;
+  background: var(--light-yellow);
+  border-radius: 10px;
+  padding: 25px 10px 0;
   border: none;
-}
-.listen-plan-box-annual {
-  border: 0.125rem solid var(--teal);
-}
-.listen-plan-box-lifetime {
-  border: 0.125rem solid var(--success-green);
+  width: 433px;
+  height: 134px;
+  text-align: center;
+  position: relative;
 }
 .listen-plan-badge {
-  font-size: 0.85rem; /* 13.6px */
+  background: var(--primary-blue);
+  color: var(--white);
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 10px;
+  position: absolute;
+  top: -20px;
+  right: 0;
+  padding: 2px 8px;
+  height: 40px;
 }
 .listen-plan-title {
-  font-size: 1.15rem; /* 18.4px */
-  font-weight: 600;
+  color: var(--secondary-blue);
+  font-weight: bold;
+  font-size: 2.1rem;
 }
 .listen-plan-price {
-  font-size: 1.1rem; /* 17.6px */
+  color: var(--primary-blue);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.monthly-plan-tip {
+  margin: 0 auto 5px;
+  padding: 15px 0;
+  font-weight: 600;
+  text-align: center;
 }
 
 /* --- Grownups Page --- */
-/* Grownups Page Styles */
+.grownups-page .hero-heading-2 {
+  margin-bottom: 0;
+}
 .grownups-heading {
   color: var(--teal);
 }
-.grownups-subheading {
-  color: var(--primary-orange);
-  font-size: 1.15rem; /* 18.4px */
+.grownups-page .hero-subheading {
+  margin: 0 auto 60px;
 }
 .grownups-info-panel {
   background: var(--panel-yellow);
-  border-radius: 1.125rem; /* 18px */
-  border: 0.09375rem solid #ffe6b3; /* 1.5px */
-  padding: 2rem; /* 32px */
-  max-width: 1100px;
+  border-radius: 1.125rem;
+  padding: 2rem;
+}
+.grownups-info-panel .headline {
+  text-align: left;
+  padding-bottom: 20px;
 }
 .grownups-highlight {
-  font-size: 2rem; /* 32px */
+  font-size: 2rem;
   color: var(--teal);
   font-weight: 700;
   line-height: 1.1;
@@ -941,70 +988,67 @@ h6 {
   color: #00bfae;
 }
 .grownups-highlight-sub {
-  font-size: 1.15rem; /* 18.4px */
+  font-size: 1.15rem;
   color: var(--primary-blue);
 }
 .grownups-info-box {
-  border: 0.09375rem solid #e9f7fa; /* 1.5px */
-}
-.grownups-info-box-yellow {
-  border: 0.09375rem solid #ffe6b3; /* 1.5px */
-}
-.grownups-info-icon {
-  height: 2rem; /* 32px */
-  margin-right: 0.5rem; /* 8px */
+  background: var(--white);
+  color: var(--secondary-blue);
+  padding: 25px 20px;
+  text-align: left;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  border-radius: 20px;
 }
 .grownups-info-title {
   color: var(--teal);
-}
-.grownups-info-title-orange {
-  color: var(--primary-orange);
+  font-size: 1.5rem;
+  font-weight: bold;
+  clear: both;
+  margin-bottom: 5px;
 }
 .grownups-info-text {
-  font-size: 1rem; /* 16px */
-  color: var(--primary-blue);
+  color: var(--secondary-blue);
 }
-.grownups-hello-title {
-  font-size: 2rem; /* 32px */
-  font-weight: 700;
-  color: var(--teal);
+.headphones {
+  vertical-align: bottom;
+  display: inline-block;
+  margin-right: 30px;
 }
-.grownups-hello-title-orange {
-  color: var(--primary-orange);
+.icon-heart {
+  float: right;
+  margin: 20px;
 }
-.grownups-human-badge {
-  font-size: 1rem; /* 16px */
+.hola {
+  margin-bottom: 30px;
+}
+.human-created {
+  float: right;
+  margin: 20px 10px 40px 0;
+  width: 444px;
+  height: auto;
+}
+.grownups-cta-panel {
+  text-align: center;
+  margin-top: 80px;
+}
+.grownups-page .grownups-cta-slogan {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+.btn-wwk-orange.grownups-download-btn {
   font-weight: 600;
-}
-.grownups-human-badge-check {
-  font-size: 1.2rem; /* 19.2px */
-}
-.grownups-cta {
-  color: var(--primary-orange);
-  font-size: 1.3rem; /* 20.8px */
-  font-weight: 600;
-}
-.grownups-download-btn {
-  font-weight: 600;
-  border-radius: 1rem; /* 16px */
-  padding: 0.75rem 2.5rem; /* 12px 40px */
+  margin: 0 auto 25px;
+  border-radius: 30px;
+  padding: 13px 26px;
+  font-size: 2.5rem;
 }
 .grownups-cta-sub {
   color: var(--primary-orange);
-  font-size: 1.1rem; /* 17.6px */
-  font-weight: 600;
-}
-
-/* Utility background colors - Grownups page */
-.bg-light-blue {
-  background-color: var(--light-blue) !important;
-}
-.bg-light-yellow {
-  background-color: var(--panel-yellow) !important;
-}
-.bg-orange {
-  background-color: var(--primary-orange) !important;
-  color: #fff !important;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 25px auto 40px;
 }
 
 /* Responsive tweaks */
@@ -1020,10 +1064,4 @@ h6 {
   .stories-covers-row {
     gap: 0.75rem;
   }
-}
-
-.stories-category-row img {
-  width: 190px !important;
-  height: 190px !important;
-  object-fit: contain;
 }
