@@ -7,7 +7,110 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT Sans:wght@400;700&display=swap" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="./styles/site.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+      (function () {
+        // Define custom arrows for both promo and review sliders
+        var prevArrowHtml = '<button type="button" class="left-arrow slick-prev slick-arrow" aria-label="Previous slide"><span class="visually-hidden" aria-hidden="true">&#8592;</span></button>';
+        var nextArrowHtml = '<button type="button" class="right-arrow slick-next slick-arrow" aria-label="Next slide"><span class="visually-hidden" aria-hidden="true">&#8594;</span></button>';
+        function setUpSlick() {
+          var winWidth = $(window).width();
+          // --- REVIEW CARDS SLIDER ---
+          var $reviewSlider = $(".review-cards");
+          // Always declare reviewOptions as a new variable on each call
+          let reviewOptions;
+          if (winWidth < 1050 && winWidth >= 951) {
+            reviewOptions = {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              rows: 1,
+              slidesPerRow: 3,
+              infinite: true,
+              arrows: false, // Hide default arrows
+              variableWidth: false,
+            };
+          } else if (winWidth <= 950) {
+            reviewOptions = {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              rows: 1,
+              slidesPerRow: 2,
+              infinite: true,
+              arrows: false, // Hide default arrows
+              variableWidth: false,
+            };
+          } else {
+            reviewOptions = {
+              slidesToShow: 4,
+              slidesToScroll: 2,
+              rows: 1,
+              slidesPerRow: 4,
+              infinite: true,
+              arrows: false, // Hide default arrows
+              variableWidth: false,
+            };
+          }
+          // Attach custom arrow handlers
+          $(".review-slider-arrows .slick-prev")
+            .off("click")
+            .on("click", function () {
+              $reviewSlider.slick("slickPrev");
+            });
+          $(".review-slider-arrows .slick-next")
+            .off("click")
+            .on("click", function () {
+              $reviewSlider.slick("slickNext");
+            });
+          // Add spinner overlay if not present
+          if ($reviewSlider.parent().find(".review-slider-spinner").length === 0) {
+            $reviewSlider
+              .parent()
+              .css("position", "relative")
+              .append(
+                '<div class="review-slider-spinner" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;background:rgba(255,255,255,0.7)"><div class="spinner-border text-primary" role="status" aria-label="Loading reviews"><span class="visually-hidden">Loading...</span></div></div>'
+              );
+          } else {
+            $reviewSlider.parent().find(".review-slider-spinner").show();
+          }
+          $reviewSlider.css("opacity", 0);
+          if ($reviewSlider.hasClass("slick-initialized")) {
+            $reviewSlider.slick("unslick");
+          }
+          $reviewSlider.slick(reviewOptions);
+          setTimeout(function () {
+            $reviewSlider.stop(true, true).fadeTo(300, 1, function () {
+              $reviewSlider
+                .parent()
+                .find(".review-slider-spinner")
+                .fadeOut(200, function () {
+                  $(this).remove();
+                });
+            });
+          }, 300);
+        }
+
+        $(document).ready(function () {
+          setUpSlick();
+          // Insert custom arrows for review slider on DOM ready
+          $(function () {
+            var $reviewArrows = $(".review-slider-arrows");
+            $reviewArrows.empty();
+            $reviewArrows.append(prevArrowHtml).append(nextArrowHtml);
+          });
+        });
+        $(window).on("resize", function () {
+          clearTimeout(window.wwkSlickResizedFinished);
+          // Hide the slider immediately on resize to prevent flicker
+          $(".promo-slider").css("opacity", 0);
+          $(".review-cards").css("opacity", 0);
+          window.wwkSlickResizedFinished = setTimeout(setUpSlick, 400);
+        });
+      })();
+    </script>
   </head>
   <body class="grownups-page">
     <header class="site-header bg-white py-3" role="banner">
@@ -19,6 +122,7 @@
           <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
+              <span type="button" class="btn-close" aria-label="Close"></span>
             </button>
             <div class="collapse navbar-collapse p-0" id="navbarNav">
               <ul class="navbar-nav p-0 dot-separated">
@@ -38,7 +142,7 @@
         <h1 id="grownups-heading" class="hero-heading-2">This page is for the grown-ups!</h1>
         <div class="hero-subheading">The ones who care about kids and love a good story</div>
         <div class="grownups-info-panel">
-          <div class="row g-4">
+          <div class="row g-5">
             <div class="col-12 col-md-6">
               <div class="headline">
                 <img src="./assets/grownups-headline.png" />
@@ -97,53 +201,92 @@
         <div class="grownups-cta-sub">Every listener gets 30 stories for free! No cost, no catch.</div>
       </section>
       <div class="blue-bar mt-4" aria-hidden="true"></div>
-      <section class="grownups-families-panel">
-        <h2 class="families-love-our mb-4">Families love our stories</h2>
-        <div class="d-flex flex-row flex-wrap justify-content-start align-items-stretch gap-3 mb-5">
-          <div class="shadow-md p-3 review-box" style="min-width: 220px; max-width: 260px; flex: 1 1 220px">
-            <div class="mb-2 d-flex align-items-center star-group">
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+      <section class="reviews-section py-5" aria-labelledby="reviews-heading">
+        <div class="container-fluid text-center p-0">
+          <div class="blue-bar" aria-hidden="true"></div>
+          <h2 id="reviews-heading" class="families-love-our">Families love our stories</h2>
+          <div class="row review-cards">
+            <div class="review-col">
+              <div class="shadow-md p-3 review-box">
+                <div class="star-group">
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                </div>
+                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="reviewer-name">Reviewer name</div>
+              </div>
             </div>
-            <div class="add-customer-review mb-3">Add customer review text</div>
-            <div class="reviewer-name">Reviewer name</div>
-          </div>
-          <div class="shadow-md p-3 review-box" style="min-width: 220px; max-width: 260px; flex: 1 1 220px">
-            <div class="mb-2 d-flex align-items-center star-group">
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+            <div class="review-col">
+              <div class="shadow-md p-3 review-box">
+                <div class="star-group">
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                </div>
+                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="reviewer-name">Reviewer name</div>
+              </div>
             </div>
-            <div class="add-customer-review mb-3">Add customer review text</div>
-            <div class="reviewer-name">Reviewer name</div>
-          </div>
-          <div class="shadow-md p-3 review-box" style="min-width: 220px; max-width: 260px; flex: 1 1 220px">
-            <div class="mb-2 d-flex align-items-center star-group">
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+            <div class="review-col">
+              <div class="shadow-md p-3 review-box">
+                <div class="star-group">
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                </div>
+                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="reviewer-name">Reviewer name</div>
+              </div>
             </div>
-            <div class="add-customer-review mb-3">Add customer review text</div>
-            <div class="reviewer-name">Reviewer name</div>
-          </div>
-          <div class="shadow-md p-3 review-box" style="min-width: 220px; max-width: 260px; flex: 1 1 220px">
-            <div class="mb-2 d-flex align-items-center star-group">
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-              <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+            <div class="review-col">
+              <div class="shadow-md p-3 review-box">
+                <div class="star-group">
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                </div>
+                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="reviewer-name">Reviewer name</div>
+              </div>
             </div>
-            <div class="add-customer-review mb-3">Add customer review text</div>
-            <div class="reviewer-name">Reviewer name</div>
+            <div class="review-col">
+              <div class="shadow-md p-3 review-box">
+                <div class="star-group">
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                </div>
+                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="reviewer-name">Reviewer name</div>
+              </div>
+            </div>
+            <div class="review-col">
+              <div class="shadow-md p-3 review-box">
+                <div class="star-group">
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                </div>
+                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="reviewer-name">Reviewer name</div>
+              </div>
+            </div>
           </div>
+          <!-- Custom review slider arrows below, lower right -->
+          <div class="review-slider-arrows"></div>
         </div>
       </section>
     </main>

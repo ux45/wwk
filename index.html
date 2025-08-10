@@ -14,21 +14,177 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-      $(document).ready(function () {
-        $(".promo-slider").slick({
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          arrows: true,
-          dots: true,
-          prevArrow: '<button type="button" class="left-arrow slick-prev slick-arrow"></button>',
-          nextArrow: '<button type="button" class="right-arrow slick-next slick-arrow"></button>',
+      (function () {
+        // Define custom arrows for both promo and review sliders
+        var prevArrowHtml = '<button type="button" class="left-arrow slick-prev slick-arrow" aria-label="Previous slide"><span class="visually-hidden" aria-hidden="true">&#8592;</span></button>';
+        var nextArrowHtml = '<button type="button" class="right-arrow slick-next slick-arrow" aria-label="Next slide"><span class="visually-hidden" aria-hidden="true">&#8594;</span></button>';
+        function setUpSlick() {
+          var winWidth = $(window).width();
+          // --- PROMO SLIDER ---
+          var $promoSlider = $(".promo-slider");
+          var promoOptions;
+          if (winWidth < 640) {
+            promoOptions = {
+              rows: 2,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              slidesPerRow: 1,
+              infinite: true,
+              arrows: true,
+              variableWidth: false,
+              prevArrow: prevArrowHtml,
+              nextArrow: nextArrowHtml,
+            };
+          } else {
+            promoOptions = {
+              rows: 1,
+              slidesToShow: 3,
+              slidesToScroll: 2,
+              slidesPerRow: 1,
+              infinite: true,
+              arrows: true,
+              variableWidth: false,
+              responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    rows: 1,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    slidesPerRow: 1,
+                  },
+                },
+              ],
+              prevArrow: prevArrowHtml,
+              nextArrow: nextArrowHtml,
+            };
+          }
+          // Add spinner overlay if not present
+          if ($promoSlider.parent(".promo-slider-wrapper").find(".promo-slider-spinner").length === 0) {
+            $promoSlider
+              .parent()
+              .css("position", "relative")
+              .append(
+                '<div class="promo-slider-spinner" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;background:rgba(255,255,255,0.7)"><div class="spinner-border text-primary" role="status" aria-label="Loading slides"><span class="visually-hidden">Loading...</span></div></div>'
+              );
+          } else {
+            $promoSlider.parent().find(".promo-slider-spinner").show();
+          }
+          $promoSlider.css("opacity", 0);
+          if ($promoSlider.hasClass("slick-initialized")) {
+            $promoSlider.slick("unslick");
+          }
+          $promoSlider.slick(promoOptions);
+          setTimeout(function () {
+            $promoSlider.stop(true, true).fadeTo(300, 1, function () {
+              $promoSlider
+                .parent()
+                .find(".promo-slider-spinner")
+                .fadeOut(200, function () {
+                  $(this).remove();
+                });
+            });
+          }, 300);
+
+          // --- REVIEW CARDS SLIDER ---
+          var $reviewSlider = $(".review-cards");
+          // Always declare reviewOptions as a new variable on each call
+          let reviewOptions;
+          if (winWidth < 1050 && winWidth >= 951) {
+            console.log(winWidth);
+            reviewOptions = {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              rows: 1,
+              slidesPerRow: 3,
+              infinite: true,
+              arrows: false, // Hide default arrows
+              variableWidth: false,
+            };
+          } else if (winWidth <= 950) {
+            console.log(winWidth);
+            reviewOptions = {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              rows: 1,
+              slidesPerRow: 2,
+              infinite: true,
+              arrows: false, // Hide default arrows
+              variableWidth: false,
+            };
+          } else {
+            reviewOptions = {
+              slidesToShow: 4,
+              slidesToScroll: 2,
+              rows: 1,
+              slidesPerRow: 4,
+              infinite: true,
+              arrows: false, // Hide default arrows
+              variableWidth: false,
+            };
+          }
+          console.log(reviewOptions);
+
+          // Attach custom arrow handlers
+          $(".review-slider-arrows .slick-prev")
+            .off("click")
+            .on("click", function () {
+              $reviewSlider.slick("slickPrev");
+            });
+          $(".review-slider-arrows .slick-next")
+            .off("click")
+            .on("click", function () {
+              $reviewSlider.slick("slickNext");
+            });
+          // Add spinner overlay if not present
+          if ($reviewSlider.parent().find(".review-slider-spinner").length === 0) {
+            $reviewSlider
+              .parent()
+              .css("position", "relative")
+              .append(
+                '<div class="review-slider-spinner" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;background:rgba(255,255,255,0.7)"><div class="spinner-border text-primary" role="status" aria-label="Loading reviews"><span class="visually-hidden">Loading...</span></div></div>'
+              );
+          } else {
+            $reviewSlider.parent().find(".review-slider-spinner").show();
+          }
+          $reviewSlider.css("opacity", 0);
+          if ($reviewSlider.hasClass("slick-initialized")) {
+            $reviewSlider.slick("unslick");
+          }
+          $reviewSlider.slick(reviewOptions);
+          setTimeout(function () {
+            $reviewSlider.stop(true, true).fadeTo(300, 1, function () {
+              $reviewSlider
+                .parent()
+                .find(".review-slider-spinner")
+                .fadeOut(200, function () {
+                  $(this).remove();
+                });
+            });
+          }, 300);
+        }
+
+        $(document).ready(function () {
+          setUpSlick();
+          // Insert custom arrows for review slider on DOM ready
+          $(function () {
+            var $reviewArrows = $(".review-slider-arrows");
+            $reviewArrows.empty();
+            $reviewArrows.append(prevArrowHtml).append(nextArrowHtml);
+          });
         });
-      });
+        $(window).on("resize", function () {
+          clearTimeout(window.wwkSlickResizedFinished);
+          // Hide the slider immediately on resize to prevent flicker
+          $(".promo-slider").css("opacity", 0);
+          $(".review-cards").css("opacity", 0);
+          window.wwkSlickResizedFinished = setTimeout(setUpSlick, 400);
+        });
+      })();
     </script>
   </head>
   <body class="homepage">
-    <header class="site-header bg-white py-3" role="banner">
+    <header class="site-header" role="banner">
       <div class="container-fluid d-flex justify-content-between align-items-center">
         <a href="index.html">
           <img src="./assets/WWK logo.svg" alt="World Wide Kids Logo" class="wwk-logo-icon" />
@@ -37,6 +193,7 @@
           <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
+              <span type="button" class="btn-close" aria-label="Close"></span>
             </button>
             <div class="collapse navbar-collapse p-0" id="navbarNav">
               <ul class="navbar-nav p-0 dot-separated">
@@ -51,14 +208,16 @@
         </nav>
       </div>
     </header>
-    <main class="page-content-wrapper container-fluid d-flex flex-column justify-content-between align-items-center">
+    <main class="page-content-wrapper container-fluid">
       <section class="text-center" aria-labelledby="stories-heading">
         <div class="container-fluid">
           <h1 id="stories-heading" class="stories-from-around hero-heading-1">Stories from around the World</h1>
           <div class="app-promo-panel" aria-label="App promotion">
             <p class="get-the-app">Get the App for free</p>
-            <img src="./assets/Apple badge.svg" alt="Download on the Apple App Store" class="apple-badge-icon" />
-            <img src="./assets/Google badge.svg" alt="Get it on Google Play" class="google-badge-icon" />
+            <div class="app-store-icons">
+              <img src="./assets/apple-badge.svg" alt="Download on the Apple App Store" class="apple-badge-icon" />
+              <img src="./assets/google-badge.svg" alt="Get it on Google Play" class="google-badge-icon" />
+            </div>
             <p class="audio-stories-for">Audio stories for ages 3–10</p>
           </div>
         </div>
@@ -73,35 +232,37 @@
       <section class="promo-banner bg-white text-center" aria-labelledby="promo-heading">
         <p class="free-stories-included">30 free stories included – yours to keep and enjoy!</p>
         <h2 id="promo-heading" class="get-started-by">Get started by downloading the free app</h2>
-        <div class="promo-slider mb-4">
-          <div class="rounded-3 shadow-sm feature-box yellow">
-            <h3 class="feature-text approved-stories mb-0">Librarian-approved stories</h3>
-          </div>
-          <div class="rounded-3 shadow-sm feature-box green">
-            <h3 class="feature-text help-children">Help children learn about the world around them</h3>
-          </div>
-          <div class="rounded-3 shadow-sm feature-box blue">
-            <h3 class="feature-text stories-english">Stories in English &amp; Spanish</h3>
-          </div>
-          <div class="rounded-3 shadow-sm feature-box peach">
-            <h3 class="feature-text stories-forever">Keep stories forever: no take-backs</h3>
-          </div>
-          <div class="rounded-3 shadow-sm feature-box taupe">
-            <h3 class="feature-text stories-download">Stories automatically download for on-the-go listening</h3>
-          </div>
-          <div class="rounded-3 shadow-sm feature-box violet">
-            <h3 class="feature-text audible-only">Audible-only platform supports screen-free listening</h3>
+        <div class="promo-slider-wrapper">
+          <div class="promo-slider">
+            <div class="feature-box yellow">
+              <h3 class="feature-text approved-stories">Librarian-approved stories</h3>
+            </div>
+            <div class="feature-box green">
+              <h3 class="feature-text help-children">Help children learn about the world around them</h3>
+            </div>
+            <div class="feature-box blue">
+              <h3 class="feature-text stories-english">Stories in English &amp; Spanish</h3>
+            </div>
+            <div class="feature-box peach">
+              <h3 class="feature-text stories-forever">Keep stories forever: no take-backs</h3>
+            </div>
+            <div class="feature-box taupe">
+              <h3 class="feature-text stories-download">Stories automatically download for on-the-go listening</h3>
+            </div>
+            <div class="feature-box violet">
+              <h3 class="feature-text audible-only">Audible-only platform supports screen-free listening</h3>
+            </div>
           </div>
         </div>
       </section>
       <section class="reviews-section py-5" aria-labelledby="reviews-heading">
         <div class="container-fluid text-center p-0">
           <div class="blue-bar" aria-hidden="true"></div>
-          <h2 id="reviews-heading" class="families-love-our mb-4">Families love our stories</h2>
-          <div class="row review-cards justify-content-center align-items-center g-0">
-            <div class="d-flex review-col">
+          <h2 id="reviews-heading" class="families-love-our">Families love our stories</h2>
+          <div class="row review-cards">
+            <div class="review-col">
               <div class="shadow-md p-3 review-box">
-                <div class="mb-2 d-flex align-items-center star-group">
+                <div class="star-group">
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
@@ -112,9 +273,9 @@
                 <div class="reviewer-name">Reviewer name</div>
               </div>
             </div>
-            <div class="d-flex review-col">
+            <div class="review-col">
               <div class="shadow-md p-3 review-box">
-                <div class="mb-2 d-flex align-items-center star-group">
+                <div class="star-group">
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
@@ -125,9 +286,9 @@
                 <div class="reviewer-name">Reviewer name</div>
               </div>
             </div>
-            <div class="d-flex review-col">
+            <div class="review-col">
               <div class="shadow-md p-3 review-box">
-                <div class="mb-2 d-flex align-items-center star-group">
+                <div class="star-group">
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
@@ -138,9 +299,35 @@
                 <div class="reviewer-name">Reviewer name</div>
               </div>
             </div>
-            <div class="d-flex review-col">
+            <div class="review-col">
               <div class="shadow-md p-3 review-box">
-                <div class="mb-2 d-flex align-items-center star-group">
+                <div class="star-group">
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                </div>
+                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="reviewer-name">Reviewer name</div>
+              </div>
+            </div>
+            <div class="review-col">
+              <div class="shadow-md p-3 review-box">
+                <div class="star-group">
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                </div>
+                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="reviewer-name">Reviewer name</div>
+              </div>
+            </div>
+            <div class="review-col">
+              <div class="shadow-md p-3 review-box">
+                <div class="star-group">
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
@@ -152,6 +339,8 @@
               </div>
             </div>
           </div>
+          <!-- Custom review slider arrows below, lower right -->
+          <div class="review-slider-arrows"></div>
         </div>
       </section>
     </main>
