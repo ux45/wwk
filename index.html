@@ -20,6 +20,8 @@
         var nextArrowHtml = '<button type="button" class="right-arrow slick-next slick-arrow" aria-label="Next slide"><span class="visually-hidden" aria-hidden="true">&#8594;</span></button>';
         function setUpSlick() {
           var winWidth = $(window).width();
+          console.log(winWidth);
+
           // --- PROMO SLIDER ---
           var $promoSlider = $(".promo-slider");
           var promoOptions;
@@ -90,8 +92,7 @@
           var $reviewSlider = $(".review-cards");
           // Always declare reviewOptions as a new variable on each call
           let reviewOptions;
-          if (winWidth < 1050 && winWidth >= 951) {
-            console.log(winWidth);
+          if (winWidth >= 951 && winWidth < 1350) {
             reviewOptions = {
               slidesToShow: 3,
               slidesToScroll: 3,
@@ -102,7 +103,6 @@
               variableWidth: false,
             };
           } else if (winWidth <= 950) {
-            console.log(winWidth);
             reviewOptions = {
               slidesToShow: 2,
               slidesToScroll: 1,
@@ -189,7 +189,7 @@
         <a href="index.html">
           <img src="./assets/WWK logo.svg" alt="World Wide Kids Logo" class="wwk-logo-icon" />
         </a>
-        <nav class="site-navbar navbar navbar-expand-lg bg-body-tertiary p-0 rounded-5 mt-5 d-none d-md-flex gap-4" aria-label="Main navigation">
+        <nav class="site-navbar navbar navbar-expand-md bg-body-tertiary p-0 rounded-5 d-sm-flex" aria-label="Main navigation">
           <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -255,7 +255,7 @@
           </div>
         </div>
       </section>
-      <section class="reviews-section py-5" aria-labelledby="reviews-heading">
+      <section class="reviews-section" aria-labelledby="reviews-heading">
         <div class="container-fluid text-center p-0">
           <div class="blue-bar" aria-hidden="true"></div>
           <h2 id="reviews-heading" class="families-love-our">Families love our stories</h2>

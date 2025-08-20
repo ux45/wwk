@@ -13,49 +13,106 @@
     <link rel="stylesheet" href="./styles/site.css" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-      $(document).ready(function () {
-        $(".carousel-wrapper").slick({
-          centerMode: true,
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          variableWidth: true,
-          adaptiveHeight: true,
-          prevArrow: '<button type="button" class="left-arrow slick-prev slick-arrow"></button>',
-          nextArrow: '<button type="button" class="right-arrow slick-next slick-arrow"></button>',
-          responsive: [
-            {
-              breakpoint: 768,
-              settings: {
-                arrows: false,
-                dots: true,
-                centerMode: true,
-                centerPadding: "60px",
-                slidesToShow: 3,
+      (function () {
+        function setUpSlick() {
+          var winWidth = $(window).width();
+          console.log(winWidth);
+
+          // --- FAVOURITE SLIDER ---
+          var $favsSlider = $(".carousel-slider");
+          var favsSliderOpts;
+          favsSliderOpts = {
+            centerMode: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            variableWidth: true,
+            adaptiveHeight: true,
+            prevArrow: '<button type="button" class="left-arrow slick-prev slick-arrow"><span class="visually-hidden" aria-hidden="true">&#8592;</span></button>',
+            nextArrow: '<button type="button" class="right-arrow slick-next slick-arrow"><span class="visually-hidden" aria-hidden="true">&#8594;</span></button>',
+            responsive: [
+              {
+                breakpoint: 768,
+                settings: {
+                  arrows: false,
+                  dots: true,
+                  centerMode: true,
+                  centerPadding: "60px",
+                  slidesToShow: 3,
+                },
               },
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                arrows: false,
-                dots: true,
-                centerMode: true,
-                centerPadding: "40px",
-                slidesToShow: 1,
+              {
+                breakpoint: 480,
+                settings: {
+                  arrows: false,
+                  dots: true,
+                  centerMode: true,
+                  centerPadding: "40px",
+                  slidesToShow: 1,
+                },
               },
+            ],
+            afterChange: function (event, slick, currentSlide) {
+              $(".carousel-slider .slick-slide").removeAttr("id");
+
+              // Add your unique ID to the center slide
+              $(".carousel-slider .slick-center").attr("id", "-slide");
             },
-          ],
+          };
+          // Add spinner overlay if not present
+          if ($favsSlider.parent(".carousel-wrapper").find(".carousel-slider-spinner").length === 0) {
+            $favsSlider
+              .parent()
+              .css("position", "relative")
+              .append(
+                '<div class="carousel-slider-spinner" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:10;background:rgba(255,255,255,0.7)"><div class="spinner-border text-primary" role="status" aria-label="Loading slides"><span class="visually-hidden">Loading...</span></div></div>'
+              );
+          } else {
+            $favsSlider.parent().find(".carousel-slider-spinner").show();
+          }
+          $favsSlider.css("opacity", 0);
+          if ($favsSlider.hasClass("slick-initialized")) {
+            $favsSlider.slick("unslick");
+          }
+          $favsSlider.slick(favsSliderOpts);
+          setTimeout(function () {
+            $favsSlider.stop(true, true).fadeTo(300, 1, function () {
+              $favsSlider
+                .parent()
+                .find(".carousel-slider-spinner")
+                .fadeOut(200, function () {
+                  $(this).remove();
+                });
+            });
+          }, 300);
+        }
+
+        $(document).ready(function () {
+          setUpSlick();
+          assignSliderVars();
+          $(".carousel-slider").on("init", function (event, slick) {
+            assignSliderVars();
+          });
+          $(".carousel-slider").on("afterChange", function (event, slick, currentSlide) {
+            assignSliderVars();
+          });
         });
-      });
+        $(window).on("resize", function () {
+          clearTimeout(window.wwkSlickResizedFinished);
+          // Hide the slider immediately on resize to prevent flicker
+          $(".carousel-slider").css("opacity", 0);
+          window.wwkSlickResizedFinished = setTimeout(setUpSlick, 400);
+        });
+      })();
     </script>
   </head>
   <body class="stories-page">
-    <header class="site-header bg-white py-3" role="banner">
+    <header class="site-header" role="banner">
       <div class="container-fluid d-flex justify-content-between align-items-center">
         <a href="index.html">
           <img src="./assets/WWK logo.svg" alt="World Wide Kids Logo" class="wwk-logo-icon" />
         </a>
-        <nav class="site-navbar navbar navbar-expand-lg bg-body-tertiary p-0 rounded-5 mt-5 d-none d-md-flex gap-4" aria-label="Main navigation">
+        <nav class="site-navbar navbar navbar-expand-md bg-body-tertiary p-0 rounded-5 d-sm-flex" aria-label="Main navigation">
           <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -74,98 +131,201 @@
         </nav>
       </div>
     </header>
-    <main class="page-content-wrapper container-fluid d-flex flex-column align-items-center">
-      <section class="hero-section text-center py-4 page-content-inner">
+    <main class="page-content-wrapper container-fluid">
+      <section class="catgories-section page-content-inner">
         <h1 id="stories-heading" class="mb-2 hero-heading-2" aria-labelledby="stories-heading">Original, timeless and magical</h1>
         <div class="hero-subheading">Stories from around the World told in both English and Spanish</div>
         <div class="stories-categories-panel">
-          <div class="stories-categories-panel header">
+          <div class="header">
             <div class="sub-header-teal">Adventure, imagination, and culture – all in one app!</div>
           </div>
           <div class="stories-panel-content">
             <div class="stories-categories-intro">Fun categories for kids to explore</div>
             <div class="stories-category-row">
-              <div class="text-center">
+              <div class="story-category">
                 <img src="./assets/icon-animals.png" alt="Animals" />
                 <div class="stories-category-label animals">Animals</div>
               </div>
-              <div class="text-center">
+              <div class="story-category">
                 <img src="./assets/icon-fantasy.png" alt="Fantasy" />
                 <div class="stories-category-label fantasy">Fantasy</div>
               </div>
-              <div class="text-center">
+              <div class="story-category">
                 <img src="./assets/icon-adventure.png" alt="Adventure" />
                 <div class="stories-category-label adventure">Adventure</div>
               </div>
-              <div class="text-center">
+              <div class="story-category">
                 <img src="./assets/icon-ourworld.png" alt="Our World" />
                 <div class="stories-category-label ourworld">Our World</div>
               </div>
-              <div class="text-center">
+              <div class="story-category">
                 <img src="./assets/icon-silly.png" alt="Silly" />
                 <div class="stories-category-label silly">Silly</div>
               </div>
             </div>
           </div>
         </div>
-        <h2 class="mb-2 hero-heading-2">A few of our favorites</h2>
-        <div class="hero-subheading mb-2">Press play to listen to samples</div>
+      </section>
+      <section class="stories-section page-content-inner">
+        <h2 class="hero-heading-2">A few of our favorites</h2>
+        <div class="hero-subheading">Press play to listen to samples</div>
         <div class="stories-covers-row">
-          <div class="center carousel-wrapper">
-            <div>
-              <a href="https://librarycall.com/storytime-commons/el-elephante-amable">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-09/The%20Kind%20Elephant%20%281%29.png?itok=VfQkVHQh" alt="Book cover of El elefante amable" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/el-cuento-de-pedrito-el-conejo">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2022-11/El%20cuento%20de%20Pedrito%20el%20Conejo.jpg?itok=QtX28hqw" alt="Book cover for El elefante amable" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/el-nino-que-queria-mas-queso">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-11/Storytime%20Commons%2C%20Spanish%20%283%29.png?itok=Z0VGvI73" alt="Book cover for El niño que quería más queso" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/el-oso-y-las-abjeas">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-05/The%20bear%20and%20the%20bees%20SPA.png?itok=62jTwEON" alt="Book cover for El oso y las abjeas" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/la-gallinita-roja">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-05/La%20Gallinita%20Roja%20%284%29.png?itok=dCa1ABP2" alt="Book cover for La gallinita roja" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/waslene-y-la-madrina-del-bosque">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-06/Waslene%20y%20la%20madrina%20del%20bosque.png?itok=IdaoZvcq" alt="Book cover for Waslene y la madrina del bosque" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/winnie-pooh-y-la-aventura-al-polo-norte">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-12/Storytime%20Commons%2C%20Spanish.png?itok=qNZOi8to" alt="Book cover for Winnie-the-Pooh y la aventura al Polo Norte" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/la-llorona-version-en-espanol">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-10/2.png?itok=5CamXM45" alt="Book cover for La Llorona (versión en español)" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/rapunzel-en-espanol">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-01/Rapunzel%20in%20Spanish.png?itok=6_DdYvJI" alt="Book cover for Rapunzel (en español)" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/la-zorra-y-el-gato">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-03/La%20zorra%20y%20el%20gato%20cover.jpg?itok=K9xSf6v4" alt="Book cover for La zorra y el gato" />
-              </a>
-            </div>
-            <div>
-              <a href="https://librarycall.com/storytime-commons/el-raton-perez">
-                <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-08/1.png?itok=K7wtLrdv" alt="Book cover for El Ratón Pérez" />
-              </a>
+          <div class="carousel-wrapper">
+            <div class="center carousel-slider">
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-09/The%20Kind%20Elephant%20%281%29.png?itok=VfQkVHQh" alt="Book cover of El elefante amable" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer1">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button1" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2022-11/El%20cuento%20de%20Pedrito%20el%20Conejo.jpg?itok=QtX28hqw" alt="Book cover for El elefante amable" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer2">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button2" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-11/Storytime%20Commons%2C%20Spanish%20%283%29.png?itok=Z0VGvI73" alt="Book cover for El niño que quería más queso" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer3">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button3" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-05/The%20bear%20and%20the%20bees%20SPA.png?itok=62jTwEON" alt="Book cover for El oso y las abjeas" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer4">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button4" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-05/La%20Gallinita%20Roja%20%284%29.png?itok=dCa1ABP2" alt="Book cover for La gallinita roja" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer5">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button5" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-06/Waslene%20y%20la%20madrina%20del%20bosque.png?itok=IdaoZvcq" alt="Book cover for Waslene y la madrina del bosque" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer6">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button6" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-12/Storytime%20Commons%2C%20Spanish.png?itok=qNZOi8to" alt="Book cover for Winnie-the-Pooh y la aventura al Polo Norte" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer7">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button7" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-10/2.png?itok=5CamXM45" alt="Book cover for La Llorona (versión en español)" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer8">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button8" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-01/Rapunzel%20in%20Spanish.png?itok=6_DdYvJI" alt="Book cover for Rapunzel (en español)" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer9">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button9" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-03/La%20zorra%20y%20el%20gato%20cover.jpg?itok=K9xSf6v4" alt="Book cover for La zorra y el gato" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer10">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button10" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-slide">
+                <div class="slide-content">
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-08/1.png?itok=K7wtLrdv" alt="Book cover for El Ratón Pérez" />
+                  <div class="audio-holder">
+                    <audio id="audioplayer11">
+                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <button id="button11" class="btn audio-play-btn">
+                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -181,5 +341,6 @@
       </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="./scripts/slider.js"></script>
   </body>
 </html>

@@ -19,6 +19,8 @@
         var nextArrowHtml = '<button type="button" class="right-arrow slick-next slick-arrow" aria-label="Next slide"><span class="visually-hidden" aria-hidden="true">&#8594;</span></button>';
         function setUpSlick() {
           var winWidth = $(window).width();
+          console.log(winWidth);
+
           // --- REVIEW CARDS SLIDER ---
           var $reviewSlider = $(".review-cards");
           // Always declare reviewOptions as a new variable on each call
@@ -113,12 +115,12 @@
     </script>
   </head>
   <body class="grownups-page">
-    <header class="site-header bg-white py-3" role="banner">
+    <header class="site-header" role="banner">
       <div class="container-fluid d-flex justify-content-between align-items-center">
         <a href="index.html">
           <img src="./assets/WWK logo.svg" alt="World Wide Kids Logo" class="wwk-logo-icon" />
         </a>
-        <nav class="site-navbar navbar navbar-expand-lg bg-body-tertiary p-0 rounded-5 mt-5 d-none d-md-flex gap-4" aria-label="Main navigation">
+        <nav class="site-navbar navbar navbar-expand-md bg-body-tertiary p-0 rounded-5 d-sm-flex" aria-label="Main navigation">
           <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -143,53 +145,57 @@
         <div class="hero-subheading">The ones who care about kids and love a good story</div>
         <div class="grownups-info-panel">
           <div class="row g-5">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
               <div class="headline">
-                <img src="./assets/grownups-headline.png" />
+                <img src="./assets/grownups-headline.png" class="grownups-intro-img" />
               </div>
               <div class="grownups-info-box">
                 <div class="grownups-info-title">Why stories matter</div>
                 <div class="grownups-info-text">
-                  Early exposure to stories significantly impacts a child’s cognitive development and literacy skills. However, many children don’t have a person who is available or able to read to them daily, and some households may lack easy access
-                  to books and literacy development opportunities.
+                  <p>
+                    Early exposure to stories significantly impacts a child’s cognitive development and literacy skills. However, many children don’t have a person who is available or able to read to them daily, and some households may lack easy
+                    access to books and literacy development opportunities.
+                  </p>
                 </div>
               </div>
-              <div class="grownups-info-box">
-                <div class="d-flex align-items-center mb-2">
-                  <div class="grownups-info-title"><img src="./assets/headphones.png" alt="Audio stories" class="headphones" />Benefit of audio stories</div>
+              <div class="grownups-info-box audio-stories-benefits">
+                <div class="grownups-info-title">
+                  <img src="./assets/headphones.png" alt="Audio stories" class="headphones" />
+                  <span class="title-text">Benefit of audio stories</span>
                 </div>
                 <div class="grownups-info-text">
-                  Listening to stories helps to spark kids’ imaginations while boosting their language and literacy skills.<br />
-                  The audible-only platform supports screen-free listening, minimizing visual distractions and on-screen prompts, helping children to develop their listening skills.
+                  <p>Listening to stories helps to spark kids’ imaginations while boosting their language and literacy skills.</p>
+                  <p>The audible-only platform supports screen-free listening, minimizing visual distractions and on-screen prompts, helping children to develop their listening skills.</p>
                 </div>
               </div>
               <div class="grownups-info-box">
                 <div class="grownups-info-title">Because favorites are worth keeping</div>
                 <div class="grownups-info-text">
-                  <img src="./assets/icon-heart.svg" alt="Stories for keeps" class="icon-heart" />We want everyone to have access to good stories, so even if you unsubscribe, you get to keep all the stories you’ve collected.
+                  <p><img src="./assets/icon-heart.svg" alt="Stories for keeps" class="icon-heart" />We want everyone to have access to good stories, so even if you unsubscribe, you get to keep all the stories you’ve collected.</p>
                 </div>
               </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
               <div class="grownups-info-box">
                 <div class="grownups-info-title"><img src="./assets/hola.png" class="hola" /></div>
                 <div class="fw-bold mb-1 grownups-info-title">Why we have stories in English &amp; Spanish</div>
                 <div class="grownups-info-text">
-                  Early exposure to a second language helps children learn it later in life. That’s why we offer fun, easy-to-listen-to stories that improve language skills.<br />
-                  Hearing different sounds and words boosts children’s ability to recognize and imitate them. We also want to help our native English speakers learning Spanish, and vice versa.
+                  <p>Early exposure to a second language helps children learn it later in life. That’s why we offer fun, easy-to-listen-to stories that improve language skills.</p>
+                  <p>Hearing different sounds and words boosts children’s ability to recognize and imitate them. We also want to help our native English speakers learning Spanish, and vice versa.</p>
                 </div>
               </div>
               <div class="grownups-info-box">
                 <div class="grownups-info-title">More than just stories</div>
                 <div class="grownups-info-text">
-                  Stories do more than entertain – they help children understand themselves and others. Our multicultural collection encourages empathy, imagination, and curiosity.<br />
-                  By listening to voices from around the world, kids begin to appreciate different cultures, values, and experiences.
+                  <p>Stories do more than entertain – they help children understand themselves and others. Our multicultural collection encourages empathy, imagination, and curiosity.</p>
+                  <p>By listening to voices from around the world, kids begin to appreciate different cultures, values, and experiences.</p>
                 </div>
               </div>
-              <div class="grownups-info-box">
-                <img src="./assets/human-created.png" class="human-created" />
-                <div class="grownups-info-title">Every story is crafted by real people!</div>
-                <div class="grownups-info-text">We don’t believe in storytelling via AI. Our stories come from real people based on real experiences and human imaginations. Our translations and adaptations are done by human professionals.</div>
+              <div class="grownups-info-box human-created-panel">
+                <div class="grownups-info-title"><img src="./assets/human-created.png" class="human-created" /> <span class="title-text">Every story is crafted by real people!</span></div>
+                <div class="grownups-info-text">
+                  <p>We don’t believe in storytelling via AI. Our stories come from real people based on real experiences and human imaginations. Our translations and adaptations are done by human professionals.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -201,9 +207,8 @@
         <div class="grownups-cta-sub">Every listener gets 30 stories for free! No cost, no catch.</div>
       </section>
       <div class="blue-bar mt-4" aria-hidden="true"></div>
-      <section class="reviews-section py-5" aria-labelledby="reviews-heading">
+      <section class="reviews-section" aria-labelledby="reviews-heading">
         <div class="container-fluid text-center p-0">
-          <div class="blue-bar" aria-hidden="true"></div>
           <h2 id="reviews-heading" class="families-love-our">Families love our stories</h2>
           <div class="row review-cards">
             <div class="review-col">
@@ -215,7 +220,7 @@
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                 </div>
-                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="add-customer-review mb-3">My 4 year old son loves the Whole World Kids app and book series. The stories are fun and varied. The readers have very friendly voices. The interface is intuitive. We look forward to more!</div>
                 <div class="reviewer-name">Reviewer name</div>
               </div>
             </div>
@@ -228,7 +233,7 @@
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                 </div>
-                <div class="add-customer-review mb-3">Add customer review text</div>
+                <div class="add-customer-review mb-3">Nilo LOVES your stories. He's on his second story this morning. His favorite is little bunny foo foo</div>
                 <div class="reviewer-name">Reviewer name</div>
               </div>
             </div>

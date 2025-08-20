@@ -8,14 +8,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT Sans:wght@400;700&display=swap" />
     <link rel="stylesheet" href="./styles/site.css" />
+    <script>
+      var winWidth = window.innerWidth;
+      console.log(winWidth);
+
+      window.addEventListener("resize", function () {
+        winWidth = window.innerWidth;
+        console.log(winWidth);
+      });
+    </script>
   </head>
   <body class="why-page">
-    <header class="site-header bg-white py-3" role="banner">
+    <header class="site-header" role="banner">
       <div class="container-fluid d-flex justify-content-between align-items-center">
         <a href="index.html">
           <img src="./assets/WWK logo.svg" alt="World Wide Kids Logo" class="wwk-logo-icon" />
         </a>
-        <nav class="site-navbar navbar navbar-expand-lg bg-body-tertiary p-0 rounded-5 mt-5 d-none d-md-flex gap-4" aria-label="Main navigation">
+        <nav class="site-navbar navbar navbar-expand-md bg-body-tertiary p-0 rounded-5 d-sm-flex" aria-label="Main navigation">
           <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -35,9 +44,9 @@
       </div>
     </header>
     <main class="why-page-content page-content-wrapper container-fluid">
-      <section class="hero-section text-center py-4" aria-labelledby="why-heading">
+      <section class="hero-section text-center" aria-labelledby="why-heading">
         <h1 id="why-heading" class="hero-heading-2">We’re more than stories</h1>
-        <div class="hero-subheading yellow-bg">We’re a growing library of imagination, education, and connection – built for curious kids &amp; caring grownups</div>
+        <div class="hero-subheading yellow-bg"><span class="text">We’re a growing library of imagination, education, and connection – built for curious kids &amp; caring grownups</span></div>
         <div class="why-icons-row">
           <div class="row justify-content-center">
             <div class="why-icons-wrap perfect-ages">
@@ -73,7 +82,7 @@
           </div>
         </div>
         <div class="blue-bar" aria-hidden="true"></div>
-        <h2 id="we-value" class="mb-2 hero-heading-2">We value listening, language &amp; literacy</h2>
+        <h2 id="we-value" class="hero-heading-2">We value listening, language &amp; literacy</h2>
         <p class="value-lead">
           <span class="fw-bold">Storytime isn’t just fun – it’s foundational.</span>
           Listening to stories helps kids build vocabulary, comprehension, and emotional awareness. Our audible-only platform encourages focused listening, builds attention spans, and supports language and literacy skills.
@@ -84,8 +93,8 @@
             <h2 class="hero-heading-2">Story time in your hand</h2>
             <div class="story-time-lead">
               <p>
-                Every culture has stories. They teach, comfort, and connect us.<br />
-                By hearing stories from around the world, kids grow up more curious, compassionate, and open-minded.
+                <span class="first-line">Every culture has stories. They teach, comfort, and connect us.</span>
+                <span class="second-line">By hearing stories from around the world, kids grow up more curious, compassionate, and open-minded.</span>
               </p>
               <p class="fw-bold">We're here to bring those stories right to their ears – and their hearts.</p>
             </div>
