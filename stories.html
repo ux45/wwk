@@ -13,6 +13,35 @@
     <link rel="stylesheet" href="./styles/site.css" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
+      // Stop all audio when a play button is pressed or slider arrows are clicked
+      document.addEventListener("DOMContentLoaded", function () {
+        // Helper to pause all audio
+        function pauseAllAudio() {
+          document.querySelectorAll("audio").forEach(function (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+          });
+        }
+
+        // Pause all audio when slider arrows are clicked
+        document.querySelectorAll(".slick-arrow").forEach(function (arrow) {
+          arrow.addEventListener("click", function () {
+            pauseAllAudio();
+          });
+        });
+
+        // Also listen for dynamically added arrows (in case of slider re-init)
+        const observer = new MutationObserver(function (mutations) {
+          mutations.forEach(function (mutation) {
+            mutation.addedNodes.forEach(function (node) {
+              if (node.classList && node.classList.contains("slick-arrow")) {
+                node.addEventListener("click", pauseAllAudio);
+              }
+            });
+          });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      });
       (function () {
         function setUpSlick() {
           var winWidth = $(window).width();
@@ -89,13 +118,8 @@
 
         $(document).ready(function () {
           setUpSlick();
-          assignSliderVars();
-          $(".carousel-slider").on("init", function (event, slick) {
-            assignSliderVars();
-          });
-          $(".carousel-slider").on("afterChange", function (event, slick, currentSlide) {
-            assignSliderVars();
-          });
+          $(".carousel-slider").on("init", function (event, slick) {});
+          $(".carousel-slider").on("afterChange", function (event, slick, currentSlide) {});
         });
         $(window).on("resize", function () {
           clearTimeout(window.wwkSlickResizedFinished);
@@ -177,25 +201,25 @@
                   <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-09/The%20Kind%20Elephant%20%281%29.png?itok=VfQkVHQh" alt="Book cover of El elefante amable" />
                   <div class="audio-holder">
                     <audio id="audioplayer1">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://utility.librarycall.com/files/elelefanteamableeditpreview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button1" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
               </div>
               <div class="carousel-slide">
                 <div class="slide-content">
-                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2022-11/El%20cuento%20de%20Pedrito%20el%20Conejo.jpg?itok=QtX28hqw" alt="Book cover for El elefante amable" />
+                  <img src="https://librarycall.com/sites/default/files/styles/medium/public/2022-11/El%20cuento%20de%20Pedrito%20el%20Conejo.jpg?itok=QtX28hqw" alt="Book cover for El cuento de Pedrito el Conejo" />
                   <div class="audio-holder">
                     <audio id="audioplayer2">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://manage.librarycall.com/sites/default/files/previews/El%20cuento%20de%20Pedrito%20el%20Conejo%20preview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button2" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -205,11 +229,11 @@
                   <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-11/Storytime%20Commons%2C%20Spanish%20%283%29.png?itok=Z0VGvI73" alt="Book cover for El niño que quería más queso" />
                   <div class="audio-holder">
                     <audio id="audioplayer3">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://utility.librarycall.com/files/elninoquequeiramasquesopreview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button3" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -219,11 +243,11 @@
                   <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-05/The%20bear%20and%20the%20bees%20SPA.png?itok=62jTwEON" alt="Book cover for El oso y las abjeas" />
                   <div class="audio-holder">
                     <audio id="audioplayer4">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://utility.librarycall.com/files/elosoylasabejasfinaleditpreview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button4" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -233,11 +257,11 @@
                   <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-05/La%20Gallinita%20Roja%20%284%29.png?itok=dCa1ABP2" alt="Book cover for La gallinita roja" />
                   <div class="audio-holder">
                     <audio id="audioplayer5">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://utility.librarycall.com/files/lagallinitarojaeditpreview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button5" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -247,11 +271,11 @@
                   <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-06/Waslene%20y%20la%20madrina%20del%20bosque.png?itok=IdaoZvcq" alt="Book cover for Waslene y la madrina del bosque" />
                   <div class="audio-holder">
                     <audio id="audioplayer6">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://utility.librarycall.com/files/wasleneylamadrinadelbosquefinaleditpreview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button6" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -261,11 +285,11 @@
                   <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-12/Storytime%20Commons%2C%20Spanish.png?itok=qNZOi8to" alt="Book cover for Winnie-the-Pooh y la aventura al Polo Norte" />
                   <div class="audio-holder">
                     <audio id="audioplayer7">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://utility.librarycall.com/files/winniethepoohylaaventuraalpolonorteclayeditpreview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button7" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -275,11 +299,11 @@
                   <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-10/2.png?itok=5CamXM45" alt="Book cover for La Llorona (versión en español)" />
                   <div class="audio-holder">
                     <audio id="audioplayer8">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://utility.librarycall.com/files/lalloronaspanishclayeditpreview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button8" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -293,7 +317,7 @@
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button9" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -303,11 +327,11 @@
                   <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-03/La%20zorra%20y%20el%20gato%20cover.jpg?itok=K9xSf6v4" alt="Book cover for La zorra y el gato" />
                   <div class="audio-holder">
                     <audio id="audioplayer10">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://utility.librarycall.com/files/lalloronaspanishclayeditpreview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button10" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -317,11 +341,11 @@
                   <img src="https://librarycall.com/sites/default/files/styles/medium/public/2023-08/1.png?itok=K7wtLrdv" alt="Book cover for El Ratón Pérez" />
                   <div class="audio-holder">
                     <audio id="audioplayer11">
-                      <source src="https://manage.librarycall.com/sites/default/files/audio/Henny-Penny.mp3" type="audio/mpeg" />
+                      <source src="https://utility.librarycall.com/files/elratonperezeditpreview.mp3" type="audio/mpeg" />
                       Your browser does not support the audio element.
                     </audio>
                     <button id="button11" class="btn audio-play-btn">
-                      <div class="play-button"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
+                      <div class="icon"><span class="visually-hidden" aria-hidden="true">Listen Online!</span></div>
                     </button>
                   </div>
                 </div>
@@ -329,8 +353,8 @@
             </div>
           </div>
         </div>
-        <div class="mx-auto mb-5 stories-placeholder">
-          <span class="stories-placeholder-text">Image placeholder</span>
+        <div class="good-stories-image">
+          <img src="./assets/good-stories.png" alt="Image of child with headphones listening to audio stores and  with the words Every child deserves good stories overlaid" class="img-fluid" />
         </div>
         <div class="blue-bar mt-4" aria-hidden="true"></div>
         <div class="cta-section ready-discover-cta">

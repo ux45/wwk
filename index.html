@@ -27,7 +27,7 @@
           var promoOptions;
           if (winWidth < 640) {
             promoOptions = {
-              rows: 2,
+              rows: 1,
               slidesToShow: 1,
               slidesToScroll: 1,
               slidesPerRow: 1,
@@ -102,14 +102,28 @@
               arrows: false, // Hide default arrows
               variableWidth: false,
             };
-          } else if (winWidth <= 950) {
+          } else if (winWidth >= 651 && winWidth <= 950) {
             reviewOptions = {
               slidesToShow: 2,
               slidesToScroll: 1,
               rows: 1,
               slidesPerRow: 2,
               infinite: true,
-              arrows: false, // Hide default arrows
+              arrows: true,
+              prevArrow: prevArrowHtml,
+              nextArrow: nextArrowHtml,
+              variableWidth: false,
+            };
+          } else if (winWidth <= 650) {
+            reviewOptions = {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+              slidesPerRow: 1,
+              infinite: true,
+              arrows: true,
+              prevArrow: prevArrowHtml,
+              nextArrow: nextArrowHtml,
               variableWidth: false,
             };
           } else {
@@ -255,10 +269,10 @@
           </div>
         </div>
       </section>
+      <div class="blue-bar" aria-hidden="true"></div>
       <section class="reviews-section" aria-labelledby="reviews-heading">
-        <div class="container-fluid text-center p-0">
-          <div class="blue-bar" aria-hidden="true"></div>
-          <h2 id="reviews-heading" class="families-love-our">Families love our stories</h2>
+        <h2 id="reviews-heading" class="families-love-our">Families love our stories</h2>
+        <div class="reviews-wrapper">
           <div class="row review-cards">
             <div class="review-col">
               <div class="shadow-md p-3 review-box">
@@ -269,8 +283,8 @@
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                 </div>
-                <div class="add-customer-review mb-3">Add customer review text</div>
-                <div class="reviewer-name">Reviewer name</div>
+                <div class="add-customer-review mb-3">My 4 year old son loves the Whole World Kids app and book series. The stories are fun and varied. The readers have very friendly voices. The interface is intuitive. We look forward to more!</div>
+                <div class="reviewer-name">Zohar</div>
               </div>
             </div>
             <div class="review-col">
@@ -282,8 +296,8 @@
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                 </div>
-                <div class="add-customer-review mb-3">Add customer review text</div>
-                <div class="reviewer-name">Reviewer name</div>
+                <div class="add-customer-review mb-3">My 3 yr old LOVES your stories. He's on his second story this morning. His favorite is Little Bunny Foo-Foo</div>
+                <div class="reviewer-name">Bridget</div>
               </div>
             </div>
             <div class="review-col">
