@@ -37,6 +37,18 @@
               prevArrow: prevArrowHtml,
               nextArrow: nextArrowHtml,
             };
+          } else if (winWidth > 640 && winWidth < 1024) {
+            promoOptions = {
+              rows: 1,
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              slidesPerRow: 2,
+              infinite: true,
+              arrows: true,
+              variableWidth: false,
+              prevArrow: prevArrowHtml,
+              nextArrow: nextArrowHtml,
+            };
           } else {
             promoOptions = {
               rows: 1,
@@ -124,7 +136,7 @@
               arrows: true,
               prevArrow: prevArrowHtml,
               nextArrow: nextArrowHtml,
-              variableWidth: false,
+              variableWidth: true,
             };
           } else {
             reviewOptions = {
@@ -229,8 +241,8 @@
           <div class="app-promo-panel" aria-label="App promotion">
             <p class="get-the-app">Get the App for free</p>
             <div class="app-store-icons">
-              <img src="./assets/apple-badge.svg" alt="Download on the Apple App Store" class="apple-badge-icon" />
-              <img src="./assets/google-badge.svg" alt="Get it on Google Play" class="google-badge-icon" />
+              <a href="https://apps.apple.com/us/app/whole-world-kids/id6504121915" class="apple-badge-icon"> <img src="./assets/apple-badge.svg" alt="Download on the Apple App Store" /></a>
+              <a href="https://play.google.com/store/apps/details?id=com.lori.app&hl=en_US" class="google-badge-icon"> <img src="./assets/google-badge.svg" alt="Get it on Google Play" /></a>
             </div>
             <p class="audio-stories-for">Audio stories for ages 3–10</p>
           </div>
@@ -273,9 +285,9 @@
       <section class="reviews-section" aria-labelledby="reviews-heading">
         <h2 id="reviews-heading" class="families-love-our">Families love our stories</h2>
         <div class="reviews-wrapper">
-          <div class="row review-cards">
+          <div class="review-cards">
             <div class="review-col">
-              <div class="shadow-md p-3 review-box">
+              <div class="review-box">
                 <div class="star-group">
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
@@ -283,12 +295,12 @@
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                 </div>
-                <div class="add-customer-review mb-3">My 4 year old son loves the Whole World Kids app and book series. The stories are fun and varied. The readers have very friendly voices. The interface is intuitive. We look forward to more!</div>
+                <div class="add-customer-review">My 4 year old son loves the Whole World Kids app and book series. The stories are fun and varied. The readers have very friendly voices. The interface is intuitive. We look forward to more!</div>
                 <div class="reviewer-name">Zohar</div>
               </div>
             </div>
             <div class="review-col">
-              <div class="shadow-md p-3 review-box">
+              <div class="review-box">
                 <div class="star-group">
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
@@ -296,60 +308,40 @@
                   <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                 </div>
-                <div class="add-customer-review mb-3">My 3 yr old LOVES your stories. He's on his second story this morning. His favorite is Little Bunny Foo-Foo</div>
+                <div class="add-customer-review">My 3 yr old LOVES your stories. He's on his second story this morning. His favorite is Little Bunny Foo-Foo.</div>
                 <div class="reviewer-name">Bridget</div>
               </div>
             </div>
             <div class="review-col">
-              <div class="shadow-md p-3 review-box">
+              <div class="review-box">
                 <div class="star-group">
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                 </div>
-                <div class="add-customer-review mb-3">Add customer review text</div>
-                <div class="reviewer-name">Reviewer name</div>
+                <div class="add-customer-review">
+                  My daughter and I love using this app! She enjoys picking the stories she wants to hear, and we listen together during her quiet time. The app design is lovely, easy to use, and the stories are well organized into categories.
+                  Honestly, she could listen for hours!
+                </div>
+                <div class="reviewer-name">Samantha</div>
               </div>
             </div>
             <div class="review-col">
-              <div class="shadow-md p-3 review-box">
+              <div class="review-box">
                 <div class="star-group">
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                   <img src="./assets/Star.svg" alt="Star" class="star-icon" />
                 </div>
-                <div class="add-customer-review mb-3">Add customer review text</div>
-                <div class="reviewer-name">Reviewer name</div>
-              </div>
-            </div>
-            <div class="review-col">
-              <div class="shadow-md p-3 review-box">
-                <div class="star-group">
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
+                <div class="add-customer-review">
+                  My daughter and I love using this app! She enjoys picking the stories she wants to hear, and we listen together during her quiet time. The app design is lovely, easy to use, and the stories are well organized into categories.
+                  Honestly, she could listen for hours!
                 </div>
-                <div class="add-customer-review mb-3">Add customer review text</div>
-                <div class="reviewer-name">Reviewer name</div>
-              </div>
-            </div>
-            <div class="review-col">
-              <div class="shadow-md p-3 review-box">
-                <div class="star-group">
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon me-1" />
-                  <img src="./assets/Star.svg" alt="Star" class="star-icon" />
-                </div>
-                <div class="add-customer-review mb-3">Add customer review text</div>
-                <div class="reviewer-name">Reviewer name</div>
+                <div class="reviewer-name">Samantha</div>
               </div>
             </div>
           </div>

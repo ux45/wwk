@@ -2,7 +2,7 @@
   "name": "wwk-homepage-figma",
   "version": "1.0.0",
   "scripts": {
-    "start": "parcel index.html --open",
+    "start": "parcel index.html --open --no-cache",
     "build": "parcel build index.html"
   },
   "devDependencies": {
