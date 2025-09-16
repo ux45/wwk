@@ -207,7 +207,7 @@ h6 {
   }
 
   .navbar-expand-md {
-    max-width: 70%;
+    max-width: 75%;
   }
 
   .navbar-nav .nav-item:first-child .nav-link {
@@ -259,25 +259,43 @@ h6 {
   }
 
   .wwk-logo-icon {
-    max-height: 56px;
+    max-height: 76px;
     margin-left: 0;
+    margin-top: 20px;
   }
 
   .navbar-nav.dot-separated .nav-item:first-child .nav-link {
     padding-left: 5px;
   }
 
+  .navbar-nav.dot-separated .nav-item.nav-item:nth-child(3) .nav-link:after {
+    display: none;
+  }
+
   .navbar-expand-md {
-    max-width: 580px;
+    max-width: 480px;
+    padding-left: 2%;
+  }
+}
+
+@media (max-width: 890px) {
+  .navbar-expand-md {
+    max-width: 450px;
   }
 }
 
 @media (max-width: 767px) {
   .site-navbar {
-    max-width: 280px;
+    max-width: 210px;
     border-radius: 6px !important;
     display: flex;
     padding: 5px;
+  }
+
+  .wwk-logo-icon {
+    max-height: 55px;
+    margin-left: 0;
+    margin-top: 10px;
   }
 
   .site-navbar .container-fluid {
@@ -421,38 +439,22 @@ h6 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  justify-items: center;
+  justify-items: stretch;
 }
 
 .google-badge-icon,
 .apple-badge-icon {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  max-height: 76px;
-  overflow: hidden;
-  display: inline-flex;
   margin: 0 4px;
-  aspect-ratio: 3 / 1;
-}
-
-.google-badge-icon {
-  max-height: 80px;
 }
 
 .google-badge-icon img,
 .apple-badge-icon img {
-  width: auto;
+  width: 100%;
   height: auto;
-  object-fit: contain;
-  display: inline-block;
-  max-width: 100%;
-  max-height: 78px;
+  display: block;
 }
 
 .google-badge-icon img {
-  max-height: 80px;
 }
 
 /* Utility background colors */
@@ -505,12 +507,18 @@ h6 {
 
 @media (max-width: 955px) {
   .hero-heading-1 {
-    margin: 30px 10px 0;
-    font-size: calc(2.25rem + 0.75vw);
+    margin: 30px 0 0;
+    font-size: calc(2rem + 1.5vw);
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 690px) {
+  .hero-heading-1 {
+    font-size: calc(1.75rem + 1vw);
+  }
+}
+
+@media (max-width: 540px) {
   .hero-heading-1 {
     font-size: calc(1.5rem + 0.75vw);
   }
@@ -829,10 +837,14 @@ h6 {
 .app-promo-panel {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 40px;
+  align-items: stretch;
+}
+
+.app-promo-panel .google-badge-icon {
+  margin-left: 15px;
 }
 
 .get-the-app,
@@ -840,8 +852,16 @@ h6 {
   color: var(--primary-orange);
   text-align: left;
   font-size: var(--fontsize-primaryplus6);
-  padding: 15px 15px 0;
-  vertical-align: middle;
+  padding: 20px 15px 15px;
+  vertical-align: bottom;
+}
+
+.get-the-app {
+  padding-right: 25px;
+}
+
+.audio-stories-for {
+  padding-left: 25px;
 }
 
 .hero-image-wrapper {
@@ -1023,11 +1043,6 @@ h6 {
     font-size: var(--fontsize-primaryplus75);
   }
 
-  .homepage .google-badge-icon,
-  .homepage .apple-badge-icon {
-    max-height: 65px;
-  }
-
   .free-stories-included {
     font-size: 1.9rem;
   }
@@ -1045,11 +1060,12 @@ h6 {
   .get-the-app,
   .audio-stories-for {
     font-size: var(--fontsize-primaryplus6);
+    padding: 10px;
   }
 
-  .homepage .google-badge-icon,
-  .homepage .apple-badge-icon {
-    max-height: 55px;
+  .homepage .google-badge-icon img,
+  .homepage .apple-badge-icon img {
+    max-height: 65px;
   }
 
   .free-stories-included {
@@ -1082,12 +1098,13 @@ h6 {
 @media (min-width: 956px) and (max-width: 1049px) {
   .get-the-app,
   .audio-stories-for {
-    font-size: calc(1.25rem + 0.25vw);
+    font-size: calc(1.15rem + 0.25vw);
+    padding: 10px;
   }
 
-  .homepage .google-badge-icon,
-  .homepage .apple-badge-icon {
-    max-height: 45px;
+  .homepage .google-badge-icon img,
+  .homepage .apple-badge-icon img {
+    max-height: 55px;
   }
 
   .free-stories-included {
@@ -1133,8 +1150,8 @@ h6 {
     white-space: nowrap;
   }
 
-  .homepage .google-badge-icon,
-  .homepage .apple-badge-icon {
+  .homepage .google-badge-icon img,
+  .homepage .apple-badge-icon img {
     max-height: 60px;
     margin-bottom: 10px;
   }
@@ -1184,8 +1201,7 @@ h6 {
 
   .app-store-icons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     gap: 0;
   }
 }
@@ -1207,26 +1223,25 @@ h6 {
     font-size: 0.9rem;
   }
 
+  .audio-stories-for {
+    text-align: left;
+    margin-left: 0;
+  }
+
+  .get-the-app {
+    text-align: right;
+    margin-right: 10px;
+  }
+
   .audio-stories-for::before {
     content: "•";
     color: orange;
-    margin: 0 5px 0 0;
+    margin: 0 10px 0 0;
     display: inline-block;
   }
 
-  .app-store-icons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 100%;
-    gap: 0;
-  }
-
-  .homepage .google-badge-icon {
-    max-height: 42px;
-  }
-
-  .homepage .apple-badge-icon {
+  .homepage .google-badge-icon img,
+  .homepage .apple-badge-icon img {
     max-height: 42px;
   }
 
@@ -1710,7 +1725,7 @@ h6 {
 
   .cta-lead {
     font-size: calc(0.85rem + 0.4vw);
-    margin: 15px auto 0;
+    margin: 15px auto 20px;
   }
 
   .cta-btn {
@@ -1973,7 +1988,7 @@ h6 {
 
 @media (max-width: 490px) {
   .carousel-slider {
-    margin: 0 40px;
+    margin: 0;
   }
 
   .stories-page .hero-heading-2 {
@@ -1987,10 +2002,10 @@ h6 {
   }
 
   .stories-categories-panel {
-    margin: 30px -20px 15px;
+    margin: 20px -20px 15px;
     border-left-width: 0;
     border-right-width: 0;
-    border-radius: 15px 15px 0 0;
+    border-radius: 0;
   }
 
   .stories-categories-panel .header {
@@ -2010,14 +2025,17 @@ h6 {
   }
 
   .good-stories-image {
-    margin-left: -20px;
-    margin-right: -20px;
+    margin: 60px -20px 50px;
   }
 
   .stories-covers-row .center .slick-center {
-    max-width: 380px;
+    max-width: 420px;
+    transform: none;
   }
 
+  .carousel-slider .slick-slide {
+    max-height: 320px;
+  }
   .carousel-slider .slick-slide img {
     display: block;
     border-radius: 15px;
@@ -2025,12 +2043,19 @@ h6 {
     z-index: 50;
     min-width: 250px;
   }
+  .audio-play-btn .icon {
+    width: 40px;
+    height: 40px;
+  }
+  .stories-page .cta-btn {
+      margin-bottom: 10px;
+  }
 }
 
 /* --- Listen Page --- */
 /* Listen Page Panel Styles */
 .listen-app-panel {
-  background: url("/assets/cover-matrix-2.png") no-repeat var(--panel-blue);
+  background: url("/assets/cover-matrix-2.png") no-repeat #e9f5f8;
   background-size: 90%;
   background-position: 290% -230px;
   border-radius: 1.125rem;
@@ -2072,6 +2097,8 @@ h6 {
 
 .listen-app-panel-download-buttons {
   margin: 0 0 70px 35px;
+  flex-direction: row;
+  display: flex;
 }
 
 .listen-app-panel-right {
@@ -2097,279 +2124,6 @@ h6 {
   padding: 10px 20px;
 }
 
-@media (min-width: 1439px) {
-  .hero-heading-1.listen-app-panel-title {
-    font-size: 5.75rem;
-    line-height: 5.75rem;
-  }
-
-  .listen-app-panel-sub {
-    font-size: 1.9rem;
-  }
-
-  .listen-app-panel-note {
-    font-size: var(--fontsize-primaryplus6);
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1438px) {
-  .hero-heading-1.listen-app-panel-title {
-    font-size: calc(4rem + 0.75vw);
-    line-height: calc(4rem + 0.75vw);
-    max-width: 500px;
-  }
-
-  .listen-app-panel-sub {
-    font-size: calc(1.5rem + 0.25vw);
-  }
-
-  .listen-app-panel .apple-badge-icon,
-  .listen-app-panel .google-badge-icon {
-    max-height: 70px;
-  }
-
-  .listen-app-panel-note {
-    font-size: calc(1.3rem + 0.25vw);
-  }
-}
-
-@media (min-width: 960px) and (max-width: 1199px) {
-  .listen-page .hero-heading-2 {
-    font-size: clamp(2.8rem, 10vw, 4.5rem);
-  }
-
-  .listen-page .hero-subheading {
-    padding: 0 5%;
-    font-size: 1.75rem;
-  }
-
-  .listen-page .hero-subheading span.second-line {
-    display: block;
-  }
-
-  .listen-app-panel {
-    background-position: -165% -250px;
-    background-size: 110%;
-  }
-
-  .listen-app-panel-left {
-    flex: 1 1 65%;
-  }
-
-  .listen-app-panel-right {
-    flex: 1 1 35%;
-    align-items: flex-start;
-    justify-content: start;
-  }
-
-  .hero-heading-1.listen-app-panel-title {
-    font-size: calc(4.5rem + 1.5vw);
-    line-height: calc(4.5rem + 1.5vw);
-    max-width: 100%;
-    margin-top: 160px;
-  }
-
-  .listen-app-panel-sub {
-    font-size: calc(1.2rem + 0.75vw);
-  }
-
-  .listen-app-panel .apple-badge-icon,
-  .listen-app-panel .google-badge-icon {
-    max-height: 90px;
-  }
-
-  .listen-app-panel-note {
-    font-size: calc(1.15rem + 0.25vw);
-  }
-}
-
-@media (max-width: 1024px) {
-  .listen-app-panel {
-    background-position: -325% -130px;
-  }
-  .listen-app-panel-note {
-    font-size: calc(1rem + 0.25vw);
-  }
-}
-
-@media (max-width: 959px) {
-  .listen-page .hero-subheading {
-    font-size: calc(1rem + 0.5vw);
-    padding: 0 20px;
-  }
-
-  .listen-page .hero-subheading span,
-  .listen-page .hero-subheading div {
-    display: inline;
-    padding: 0;
-  }
-
-  .listen-app-panel {
-    background-position: -275% -120px;
-    background-size: 110%;
-  }
-  .listen-app-panel-left {
-    flex: 1 1 60%;
-  }
-
-  .listen-app-panel-right {
-    flex: 1 1 40%;
-    align-items: start;
-  }
-
-  .hero-heading-1.listen-app-panel-title {
-    font-size: calc(3.8rem + 0.5vw);
-    line-height: calc(3.8rem + 0.5vw);
-    max-width: 100%;
-    margin-top: 100px;
-  }
-
-  .listen-app-panel-download-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .listen-app-panel .apple-badge-icon,
-  .listen-app-panel .google-badge-icon {
-    max-height: 65px;
-    margin-bottom: 20px;
-  }
-
-  .app-mockup-img {
-    width: auto;
-    height: auto;
-    max-height: 90%;
-  }
-
-  .listen-app-panel-note {
-    font-size: calc(0.85rem + 0.25vw);
-  }
-}
-
-@media (max-width: 850px) {
-  .listen-page .hero-subheading {
-    display: block;
-  }
-
-  .listen-app-panel {
-    background-position: -75% -100px;
-    background-size: 130%;
-  }
-
-  .listen-app-panel-left {
-    flex: 1 1 50%;
-    padding-left: 30px;
-  }
-
-  .hero-heading-1.listen-app-panel-title {
-    margin: 120px 0 60px;
-    font-size: calc(2.5rem + 1.75vw);
-    line-height: calc(2.5rem + 1.75vw);
-  }
-
-  .listen-app-panel-right {
-    flex: 1 1 50%;
-    align-items: flex-start;
-  }
-
-  .listen-app-panel-right img {
-    width: 100%;
-    margin-left: 10%;
-    margin-right: 10px;
-    margin-top: 10px;
-  }
-
-  .listen-app-panel-sub {
-    margin: 0 0 20px;
-    font-size: 1.25rem !important;
-  }
-
-  .listen-app-panel-download-buttons {
-    margin: 0 0 0 -5px;
-  }
-
-  .listen-app-panel .apple-badge-icon,
-  .listen-app-panel .google-badge-icon {
-    max-height: 65px;
-    margin-bottom: 10px;
-  }
-
-  .listen-plan-box {
-    margin: 0 15px;
-  }
-}
-
-@media (max-width: 675px) {
-  .listen-app-panel {
-    background-position: -60% -100px;
-    background-size: 140%;
-  }
-
-  .listen-app-panel-left {
-    flex: 1 1 50%;
-    padding-left: 20px;
-  }
-
-  .hero-heading-1.listen-app-panel-title {
-    margin: 70px 0 60px;
-    font-size: calc(2.25rem + 1.25vw);
-    line-height: calc(2.25rem + 1.25vw);
-  }
-
-  .listen-app-panel-right {
-    flex: 1 1 50%;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  .listen-app-panel-right img {
-    width: 95%;
-    height: auto;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 10px;
-  }
-
-  .listen-app-panel .apple-badge-icon,
-  .listen-app-panel .google-badge-icon {
-    max-height: 55px;
-    margin-bottom: 10px;
-  }
-}
-
-@media (max-width: 500px) {
-  .listen-app-panel {
-    margin: 0 -20px;
-    border-radius: 0;
-  }
-
-  .hero-heading-1.listen-app-panel-title {
-    margin: 20px 0;
-    font-size: calc(1.75rem + 0.75vw);
-    line-height: calc(2rem + 0.75vw);
-    margin-top: 40px;
-  }
-
-  .app-mockup-img {
-    margin: 0 auto;
-    max-height: 500px;
-  }
-
-  .listen-app-panel .apple-badge-icon,
-  .listen-app-panel .google-badge-icon {
-    max-height: 45px;
-    margin-bottom: 10px;
-  }
-
-  .listen-app-panel-note {
-    font-size: var(--fontsize-primary);
-    margin: 10px -20px 0;
-    padding: 15px 20px;
-    border-radius: 0;
-  }
-}
-
 .listen-subscribe-panel {
   border-radius: 30px;
   border: 6px solid var(--panel-blue);
@@ -2385,10 +2139,10 @@ h6 {
 }
 
 .join-plan {
-  font-size: 2.1rem;
+  font-size: calc(1rem + 1vw);
   margin: 5px auto 30px;
   text-align: center;
-  padding: 15px;
+  padding: 15px 25px;
 }
 
 .story-plans-row {
@@ -2443,13 +2197,315 @@ h6 {
   text-align: center;
 }
 
+@media (min-width: 1439px) {
+  .hero-heading-1.listen-app-panel-title {
+    font-size: 5.75rem;
+    line-height: 5.75rem;
+  }
+
+  .listen-app-panel-sub {
+    font-size: 1.9rem;
+  }
+
+  .listen-app-panel-note {
+    font-size: var(--fontsize-primaryplus6);
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1438px) {
+  .hero-heading-1.listen-app-panel-title {
+    font-size: calc(4rem + 0.75vw);
+    line-height: calc(4rem + 0.75vw);
+    max-width: 500px;
+  }
+
+  .listen-app-panel {
+    background-position: 650% -170px;
+    background-size: 95%;
+  }
+
+  .listen-app-panel-sub {
+    font-size: calc(1.5rem + 0.25vw);
+  }
+
+  .listen-app-panel-download-buttons {
+    flex-direction: row;
+  }
+
+  .listen-app-panel .apple-badge-icon img,
+  .listen-app-panel .google-badge-icon img {
+    max-height: 70px;
+  }
+
+  .listen-app-panel-note {
+    font-size: calc(1.3rem + 0.25vw);
+  }
+}
+
 @media (min-width: 1350px) {
   .story-plans-row {
     flex-wrap: nowrap;
   }
 }
 
+@media (min-width: 960px) and (max-width: 1199px) {
+  .listen-page .hero-heading-2 {
+    font-size: clamp(2.8rem, 10vw, 4.5rem);
+  }
+
+  .listen-page .listen-subscribe-header.hero-subheading.orange-bg {
+    font-size: calc(1.5rem + 0.5vw);
+  }
+
+  .listen-app-panel {
+    background-position: -400% -100px;
+    background-size: 110%;
+  }
+
+  .listen-app-panel-left {
+    flex: 1 1 65%;
+  }
+
+  .join-plan {
+    font-size: calc(1.25rem + 0.25vw);
+  }
+
+  .listen-app-panel-right {
+    flex: 1 1 35%;
+    align-items: flex-start;
+    justify-content: start;
+  }
+
+  .hero-heading-1.listen-app-panel-title {
+    font-size: calc(4.5rem + 1.5vw);
+    line-height: calc(4.5rem + 1.5vw);
+    max-width: 100%;
+    margin-top: 160px;
+  }
+
+  .listen-app-panel-sub {
+    font-size: calc(1.2rem + 0.75vw);
+  }
+
+  .listen-app-panel-download-buttons {
+    flex-direction: row;
+  }
+
+  .listen-app-panel .apple-badge-icon img,
+  .listen-app-panel .google-badge-icon img {
+    max-height: 75px;
+  }
+
+  .listen-app-panel-note {
+    font-size: calc(1.15rem + 0.25vw);
+  }
+}
+
+@media (max-width: 1024px) {
+  .listen-app-panel {
+    background-position: -300% -100px;
+    background-size: 115%;
+  }
+
+  .listen-app-panel-note {
+    font-size: calc(1rem + 0.25vw);
+  }
+}
+
+@media (max-width: 959px) {
+  .listen-page .listen-subscribe-header.hero-subheading.orange-bg {
+    font-size: calc(1.25rem + 0.5vw);
+    padding: 10px 20px;
+  }
+
+  .listen-page .hero-subheading span,
+  .listen-page .hero-subheading div {
+    display: inline;
+    padding: 0;
+  }
+
+  .listen-app-panel {
+    background-position: -275% -120px;
+    background-size: 110%;
+  }
+
+  .listen-app-panel-left {
+    flex: 1 1 60%;
+  }
+
+  .join-plan {
+    font-size: calc(1rem + 0.5vw);
+  }
+
+  .listen-app-panel-right {
+    flex: 1 1 40%;
+    align-items: start;
+  }
+
+  .hero-heading-1.listen-app-panel-title {
+    font-size: calc(3.8rem + 0.5vw);
+    line-height: calc(3.8rem + 0.5vw);
+    max-width: 100%;
+    margin-top: 100px;
+  }
+
+  .listen-app-panel-sub {
+    font-size: calc(1.1rem + 0.5vw);
+  }
+
+  .listen-app-panel-download-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .listen-app-panel .apple-badge-icon img,
+  .listen-app-panel .google-badge-icon img {
+    max-height: 65px;
+    margin-bottom: 10px;
+  }
+
+  .app-mockup-img {
+    width: auto;
+    height: auto;
+    max-height: 90%;
+  }
+
+  .listen-app-panel-note {
+    font-size: calc(0.85rem + 0.25vw);
+  }
+}
+
+@media (max-width: 850px) {
+  .listen-page .listen-subscribe-header.hero-subheading.orange-bg {
+    font-size: calc(1rem + 0.5vw);
+    display: block;
+  }
+
+  .listen-app-panel {
+    background-position: -75% -80px;
+    background-size: 130%;
+  }
+
+  .listen-app-panel-left {
+    flex: 1 1 50%;
+    padding-left: 30px;
+  }
+
+  .hero-heading-1.listen-app-panel-title {
+    margin: 120px 0 60px;
+    font-size: calc(2.5rem + 1.75vw);
+    line-height: calc(2.5rem + 1.75vw);
+  }
+
+  .listen-app-panel-right {
+    flex: 1 1 50%;
+    align-items: flex-start;
+  }
+
+  .listen-app-panel-right img {
+    width: 100%;
+    margin-left: 10%;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+  .listen-app-panel-sub {
+    margin: 0 0 20px;
+    font-size: 1.25rem !important;
+  }
+
+  .listen-app-panel-download-buttons {
+    margin: 0 0 0 -5px;
+    flex-direction: column;
+  }
+
+  .listen-app-panel .apple-badge-icon img,
+  .listen-app-panel .google-badge-icon img {
+    max-height: 65px;
+    margin-bottom: 10px;
+  }
+
+  .listen-plan-box {
+    margin: 0 15px;
+  }
+}
+
+@media (max-width: 675px) {
+  .listen-app-panel {
+    background-position: -120% -50px;
+    background-size: 130%;
+  }
+
+  .listen-app-panel-left {
+    flex: 1 1 50%;
+    padding-left: 20px;
+  }
+
+  .hero-heading-1.listen-app-panel-title {
+    margin: 70px 0 60px;
+    font-size: calc(2.25rem + 1.25vw);
+    line-height: calc(2.25rem + 1.25vw);
+  }
+
+  .listen-app-panel-right {
+    flex: 1 1 50%;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .listen-app-panel-right img {
+    width: 95%;
+    height: auto;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+  }
+
+  .listen-app-panel .apple-badge-icon img,
+  .listen-app-panel .google-badge-icon img {
+    max-height: 55px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .listen-page .listen-subscribe-header.hero-subheading.orange-bg {
+    font-size: calc(1.1rem + 0.25vw);
+    display: flex;
+  }
+}
+
 @media (max-width: 500px) {
+  .listen-app-panel {
+    margin: 0 -20px;
+    border-radius: 0;
+  }
+
+  .hero-heading-1.listen-app-panel-title {
+    margin: 20px 0;
+    font-size: calc(1.75rem + 0.75vw);
+    line-height: calc(2rem + 0.75vw);
+    margin-top: 40px;
+  }
+
+  .app-mockup-img {
+    margin: 0 auto;
+    max-height: 500px;
+  }
+
+  .listen-app-panel .apple-badge-icon img,
+  .listen-app-panel .google-badge-icon img{
+    max-height: 45px;
+    margin-bottom: 10px;
+  }
+
+  .listen-app-panel-note {
+    font-size: var(--fontsize-primary);
+    padding: 15px 20px;
+    border-radius: 0;
+  }
+
   .listen-subscribe-panel {
     margin: 50px -20px;
     border: 0;
@@ -2460,6 +2516,7 @@ h6 {
     border-radius: 0;
     font-size: var(--fontsize-primaryplus75);
     padding: 5px 10px;
+    margin: 0;
   }
 
   .listen-subscribe-panel span.first-line {
@@ -2661,10 +2718,14 @@ h6 {
   margin: 25px auto 40px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1050px) {
   .grownups-info-panel .col-lg-6,
   .grownups-info-panel .row {
     margin: 0;
+  }
+  .grownups-page .hero-subheading {
+    margin: 10px auto 30px;
+    font-size: calc(1.15rem + 0.5vw);
   }
 }
 
@@ -2672,6 +2733,20 @@ h6 {
   .grownups-info-panel .col-lg-6,
   .grownups-info-panel .row {
     padding: 0;
+  }
+  .grownups-intro-img {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 575px) {
+  .grownups-info-panel {
+    background: var(--panel-yellow);
+    border-radius: 30px;
+    padding: 20px;
+  }
+  .grownups-intro-img {
+    max-width: 330px;
   }
 }
 
@@ -2752,6 +2827,10 @@ h6 {
   font-weight: bold;
 }
 
+#faqAccordionRight .hero-subheading a {
+    color: var(--primary-orange);
+}
+
 @media (min-width: 1439px) {
   .quick-answers h3.accordion-header button {
     font-size: var(--fontsize-primaryplus75);
@@ -2813,14 +2892,6 @@ h6 {
 
   .quick-answers {
     padding: 0;
-  }
-}
-
-@media (max-width: 575px) {
-  .grownups-info-panel {
-    background: var(--panel-yellow);
-    border-radius: 30px;
-    padding: 20px;
   }
 }
 
