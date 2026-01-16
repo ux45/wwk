@@ -1,0 +1,57 @@
+name: New Story
+
+on:
+  workflow_dispatch:
+    inputs:
+      story_name:
+        description: 'Story name (e.g., "The Little Kite")'
+        required: true
+        type: string
+      author:
+        description: 'Author/narrator name'
+        required: true
+        type: string
+      duration:
+        description: 'Duration (e.g., "3:12")'
+        required: true
+        type: string
+
+jobs:
+  create_story:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create story JSON file
+        run: |
+          FILENAME=$(echo "${{ inputs.story_name }}" | tr ' ' '-' | tr '[:upper:]' '[:lower:]').json
+          cat > "stories/$FILENAME" << 'EOF'
+          {
+            "page_title": "${{ inputs.story_name }}",
+            "cover_image": "assets/story-cover.jpg",
+            "author": "${{ inputs.author }}",
+            "duration": "${{ inputs.duration }}",
+            "play_url": "assets/audio/story.mp3",
+
+            "section_1_title": "Overview",
+            "section_1_bullets": [
+              "Add a summary line here.",
+              "Add another line."
+            ],
+
+            "section_2_title": "Teaching Points",
+            "section_2_bullets": [
+              "Add a teaching point here."
+            ]
+          }
+          EOF
+          echo "Created stories/$FILENAME"
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          FILENAME=$(echo "${{ inputs.story_name }}" | tr ' ' '-' | tr '[:upper:]' '[:lower:]').json
+          git add "stories/$FILENAME"
+          git commit -m "New story: ${{ inputs.story_name }}"
+          git push

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>%%PAGE_TITLE%%</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/site.css">
+</head>
+<body>
+  <header class="bg-light py-3 mb-4">
+    <div class="container">
+      <div class="d-flex align-items-center">
+        <img src="%%HERO_IMAGE%%" alt="hero" class="me-3" style="height:64px; width:auto; object-fit:cover;">
+        <h1 class="h3 mb-0">%%PAGE_TITLE%%</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="row g-4">
+      %%SECTIONS%%
+    </div>
+  </main>
+
+  <footer class="bg-dark text-white mt-5 py-4">
+    <div class="container text-center">&copy; <span id="year"></span> Your Site</div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
