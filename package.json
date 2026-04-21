@@ -2,7 +2,7 @@
   "name": "wwk-homepage-figma",
   "version": "1.0.0",
   "scripts": {
-    "start": "parcel index.html --open --no-cache",
+    "start": "parcel index.html learn-explore.html help.html grownups.html listen.html stories.html why.html --open --no-cache",
     "build": "parcel build index.html",
     "generate:grownups": "node scripts/build.js",
     "generate:stories": "node scripts/build.js"
@@ -19,7 +19,6 @@
     "base-x": "^3.0.11",
     "braces": "^3.0.3",
     "browserslist": "^4.25.0",
-    "caniuse-lite": "^1.0.30001722",
     "chalk": "^4.1.2",
     "chrome-trace-event": "^1.0.4",
     "clone": "^2.1.2",

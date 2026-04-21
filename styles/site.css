@@ -1,3 +1,16 @@
+/* Dropdown hover for desktop: moved here from inline in stories.html */
+.site-navbar .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+.site-navbar .dropdown > .dropdown-menu {
+  margin-top: 0;
+}
+@media (max-width: 767.98px) {
+  /* Let Bootstrap handle touch/click on small screens */
+  .site-navbar .dropdown:hover > .dropdown-menu {
+    display: none;
+  }
+}
 /* Typography Settings */
 
 /* Global */
@@ -2048,7 +2061,7 @@ h6 {
     height: 40px;
   }
   .stories-page .cta-btn {
-      margin-bottom: 10px;
+    margin-bottom: 10px;
   }
 }
 
@@ -2495,7 +2508,7 @@ h6 {
   }
 
   .listen-app-panel .apple-badge-icon img,
-  .listen-app-panel .google-badge-icon img{
+  .listen-app-panel .google-badge-icon img {
     max-height: 45px;
     margin-bottom: 10px;
   }
@@ -2573,15 +2586,18 @@ h6 {
 }
 
 /* --- Grownups Page --- */
-.grownups-page .hero-heading-2 {
+.grownups-page .hero-heading-2,
+.learn-page .hero-heading-2 {
   margin-bottom: 0;
 }
 
-.grownups-heading {
+.grownups-heading,
+.learn-heading {
   color: var(--teal);
 }
 
-.grownups-page .hero-subheading {
+.grownups-page .hero-subheading,
+.learn-page .hero-subheading {
   margin: 0 auto 60px;
 }
 
@@ -2591,34 +2607,47 @@ h6 {
   padding: 35px;
 }
 
-.grownups-info-panel .headline {
+.learn-info-panel {
+  background: #fff;
+  border: 10px solid var(--panel-yellow);
+  border-radius: 30px;
+  padding: 0 30px;
+}
+
+.grownups-info-panel .headline,
+.learn-info-panel .headline {
   text-align: left;
   padding-bottom: 20px;
 }
 
-.grownups-intro-img {
+.grownups-intro-img,
+.learn-intro-img {
   max-width: 531px;
   width: 100%;
   height: auto;
 }
 
-.grownups-highlight {
+.grownups-highlight,
+.learn-highlight {
   font-size: 2rem;
   color: var(--teal);
   font-weight: 700;
   line-height: 1.1;
 }
 
-.grownups-highlight-alt {
+.grownups-highlight-alt,
+.learn-highlight-alt {
   color: #00bfae;
 }
 
-.grownups-highlight-sub {
+.grownups-highlight-sub,
+.learn-highlight-sub {
   font-size: 1.15rem;
   color: var(--primary-blue);
 }
 
-.grownups-info-box {
+.grownups-info-box,
+.learn-info-box {
   background: var(--white);
   color: var(--secondary-blue);
   padding: 25px 20px;
@@ -2630,7 +2659,8 @@ h6 {
   border-radius: 20px;
 }
 
-.grownups-info-title {
+.grownups-info-title,
+.learn-info-title {
   color: var(--primary-blue);
   font-size: var(--fontsize-primaryplus6);
   font-weight: bold;
@@ -2642,7 +2672,8 @@ h6 {
   gap: 0.5em;
 }
 
-.grownups-info-text p {
+.grownups-info-text p,
+.learn-info-text p {
   color: var(--secondary-blue);
   font-size: var(--fontsize-primaryplus6);
 }
@@ -2673,7 +2704,8 @@ h6 {
   max-width: clamp(100px, 12vw, 147px);
 }
 
-.human-created-panel .grownups-info-title {
+.human-created-panel .grownups-info-title,
+.human-created-panel .learn-info-title {
   flex-direction: column;
   align-items: flex-end;
 }
@@ -2692,18 +2724,21 @@ h6 {
   align-self: flex-start;
 }
 
-.grownups-cta-panel {
+.grownups-cta-panel,
+.learn-cta-panel {
   text-align: center;
   margin-top: 80px;
 }
 
-.grownups-page .grownups-cta-slogan {
+.grownups-page .grownups-cta-slogan,
+.learn-page .learn-cta-slogan {
   font-size: var(--fontsize-md-lg);
   margin-bottom: 25px;
   font-weight: bold;
 }
 
-.btn-wwk-orange.grownups-download-btn {
+.btn-wwk-orange.grownups-download-btn,
+.btn-wwk-orange.learn-download-btn {
   font-weight: 600;
   margin: 0 auto 25px;
   border-radius: 30px;
@@ -2711,42 +2746,134 @@ h6 {
   font-size: var(--fontsize-md-lg);
 }
 
-.grownups-cta-sub {
+.grownups-cta-sub,
+.learn-cta-sub {
   color: var(--primary-orange);
   font-size: var(--fontsize-md-lg);
   font-weight: bold;
   margin: 25px auto 40px;
 }
 
+.grownups-resource-library,
+.learn-resource-library {
+  margin-top: 20px;
+  padding-top: 15px;
+}
+
+.grownups-resource-heading,
+.learn-resource-heading {
+  color: var(--primary-blue);
+  font-size: clamp(1.75rem, 1.3rem + 1vw, 2.4rem);
+  margin: 0 0 28px;
+  text-align: left;
+}
+
+.grownups-resource-grid,
+.learn-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px 20px;
+}
+
+.grownups-resource-card,
+.learn-resource-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.grownups-resource-image,
+.learn-resource-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(59, 92, 131, 0.12);
+  background: var(--white);
+  padding: 10px;
+}
+
+.grownups-resource-link,
+.learn-resource-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--primary-blue);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.grownups-resource-link:hover,
+.grownups-resource-link:focus,
+.learn-resource-link:hover,
+.learn-resource-link:focus {
+  color: var(--primary-orange);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
 @media (max-width: 1050px) {
   .grownups-info-panel .col-lg-6,
-  .grownups-info-panel .row {
+  .grownups-info-panel .row,
+  .learn-info-panel .col-lg-6,
+  .learn-info-panel .row {
     margin: 0;
   }
-  .grownups-page .hero-subheading {
+  .grownups-page .hero-subheading,
+  .learn-page .hero-subheading {
     margin: 10px auto 30px;
     font-size: calc(1.15rem + 0.5vw);
+  }
+  .grownups-resource-grid,
+  .learn-resource-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .grownups-resource-grid,
+  .learn-resource-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 16px;
   }
 }
 
 @media (max-width: 767px) {
   .grownups-info-panel .col-lg-6,
-  .grownups-info-panel .row {
+  .grownups-info-panel .row,
+  .learn-info-panel .col-lg-6,
+  .learn-info-panel .row {
     padding: 0;
   }
-  .grownups-intro-img {
+  .grownups-intro-img,
+  .learn-intro-img {
     max-width: 440px;
+  }
+  .grownups-resource-grid,
+  .learn-resource-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 575px) {
-  .grownups-info-panel {
+  .grownups-info-panel,
+  .learn-info-panel {
     background: var(--panel-yellow);
     border-radius: 30px;
     padding: 20px;
   }
-  .grownups-intro-img {
+  .grownups-intro-img,
+  .learn-intro-img {
     max-width: 330px;
+  }
+  .grownups-resource-heading,
+  .learn-resource-heading {
+    margin-bottom: 20px;
+  }
+  .grownups-resource-grid,
+  .learn-resource-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -2828,7 +2955,7 @@ h6 {
 }
 
 #faqAccordionRight .hero-subheading a {
-    color: var(--primary-orange);
+  color: var(--primary-orange);
 }
 
 @media (min-width: 1439px) {
