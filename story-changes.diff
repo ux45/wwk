@@ -1,0 +1,76 @@
+diff --git a/story-orig-tamplate.html b/story.html
+index 59751f9..2aff7c0 100644
+--- a/story-orig-tamplate.html
++++ b/story.html
+@@ -3,7 +3,7 @@
+   <head>
+     <script
+       type="text/javascript"
+-      src="https://jim.galecia.com/Py8em2q6SK-qOv3iyOITkrtWpLh1LgIwa-ANTyYuETFpoUgk9HmkAsXMMiS_0y3wI1I_f60twgJFiClsco_K8T-1RZ2Kq23_qnuGwB_4FdPkkqfBb71xjV24cRuwH_KLK3fCQWn4me1XeBEHkNnN5-8i3suKQO9mRLJYrenyugLvaor8uL9HpaaI5nJ5U8a8WLiXNCsCIkjTJQjMRKnW3iC1rdGaIIMqR58kUeQkEWK32KEQEPsnEINo1APgs7MhK7vyedBD1EV281xlbVsYT-foMM-gpmGHwYkhYrwQnqxjVVNTIce515Htfcy-1oGqZWRl2ffdcC5MlttfNyUfIUozisLeDFY4dNnr4QSGCuFbmhQ_PEgo9ewDdjHiz_mkUtOQBOUnewANa8KQPTeWYk5Ra3qtlaIaSdd1gECAd1dKTYGmWa0uhFYOMKhSZvuGJKaCdNZ10Ffy9fZUmpUu8-rBpcZEaguMaUwKBNo_p2yWYQo"
++      src="https://jim.galecia.com/LH2wzVrKnLVVmh4itQa8kuusKqgzF269CzIE8o2uzS7E2li6325ACdJc489eFLrgwYXtDnaTNtp-2s5ulByOPvL-Fq65NcduBqVrwc2D83YakrqLMaBvxGf2_AAAYwmq01_jfeT-x5HOdF6SmFi6g6nkytsdF1zOs1SihHXFJAKZzvhFD_qg--OaWZiebC4A3HPYAEQ6Z7JGRfJKIx5RJOar0lh6DtqU4GwUPys1RH_iUI9qLIAgXM-zldu59gSdLe_K5PmueP_doGuomezavh9Cmzb-psKnIjHE0Cj-YoJcu9SR_taDBepHTG5MDZHeiLgCVg0Q2ITyh-IM5ejxGS79OqoxaNkQfPe9QveNHpeYHVIEkHutDhhz7anq9q2SHNU0qTmH8fyFKN6MB92rv9QvpPbikHPgNorD9adslSc2SR_Xk9t4kUmw0Qxl4RqfbSxKnkhcByNB5FdVVREGk1cL-2Ln5LJG2kjN3udqH-5uCNk"
+     ></script>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="initial-scale=1, width=device-width" />
+@@ -21,13 +21,33 @@
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+     <link rel="stylesheet" href="https://wholeworldkids.com/styles/site.css" />
+     <link rel="stylesheet" href="https://wholeworldkids.com/assets/story_template.css" />
++    <link rel="stylesheet" href="./styles/story-print.css" media="print" />
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
++    <style>
++      .site-print-button {
++        background: transparent;
++        border: 1px solid #008197;
++        cursor: pointer;
++        border-radius: 10px;
++        padding: 5px 9px 5px;
++        color: var(--primary-blue);
++        font-size: var(--fontsize-primaryplus1);
++        font-weight: bold;
++      }
++
++      .site-print-button img {
++        display: inline-block;
++        max-height: 25px;
++        width: auto;
++        margin-right: 4px;
++      }
++    </style>
+   </head>
+   <body class="storypage-page">
+     <header class="site-header" role="banner">
+       <div class="container-fluid d-flex justify-content-between align-items-center">
+-        <a href="https://wholeworldkids.com/">
++        <a href="https://wholeworldkids.com/" class="logo-link">
+           <img src="https://wholeworldkids.com//assets/WWK logo.svg" alt="World Wide Kids Logo" class="wwk-logo-icon" />
+         </a>
+         <nav class="site-navbar navbar navbar-expand-md bg-body-tertiary p-0 rounded-5 d-sm-flex" aria-label="Main navigation">
+@@ -41,7 +61,13 @@
+                 <li class="nav-item"><a class="nav-link" href="https://wholeworldkids.com/why.html">Why you’ll love us</a></li>
+                 <li class="nav-item"><a class="nav-link" href="https://wholeworldkids.com/stories.html">Stories</a></li>
+                 <li class="nav-item"><a class="nav-link" href="https://wholeworldkids.com/listen.html">Ways to listen</a></li>
+-                <li class="nav-item"><a class="nav-link active" href="https://wholeworldkids.com/grownups.html">For grown-ups</a></li>
++                <li class="nav-item dropdown">
++                  <a class="nav-link active" href="grownups.html" id="grownupsDropdown" aria-haspopup="true" aria-expanded="false">For grown-ups</a>
++                  <ul class="dropdown-menu" aria-labelledby="grownupsDropdown">
++                    <li><a class="dropdown-item" href="grownups.html">Why our app works</a></li>
++                    <li><a class="dropdown-item" href="learn-explore.html">Learn & explore</a></li>
++                  </ul>
++                </li>
+                 <li class="nav-item"><a class="nav-link" href="https://wholeworldkids.com/help.html">We’re here to help</a></li>
+               </ul>
+             </div>
+@@ -51,6 +77,12 @@
+     </header>
+     <main class="page-content-wrapper container-fluid">
+       <section class="hero-section page-content-inner">
++        <div class="print-action-wrapper d-flex justify-content-end w-100">
++          <button class="site-print-button" type="button" onclick="window.print()" aria-label="Print page">
++            <img src="assets/print.png" alt="Print page" />
++            Print
++          </button>
++        </div>
+         <h1 id="storypage-heading" class="hero-heading-2">A Camping Trip: From City to Nature</h1>
+         <p class="story-intro story-intro-mobile">
+           This fun outdoor adventure story for children follows three best friends as they leave the city for their very first camping trip. With planning, teamwork, and curiosity, the City Squad learns new skills, explores nature, and discovers that
