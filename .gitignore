@@ -32,3 +32,6 @@ Thumbs.db
 .vscode/
 *.sublime-project
 *.sublime-workspace
+
+# dev files
+prod-files/
