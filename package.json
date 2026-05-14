@@ -2,8 +2,8 @@
   "name": "wwk-homepage-figma",
   "version": "1.0.0",
   "scripts": {
-    "start": "parcel index.html learn-explore.html help.html grownups.html listen.html stories.html why.html --open --no-cache",
-    "build": "parcel build index.html",
+    "start": "parcel index.html learn-explore.html help.html grownups.html listen.html stories.html story.html why.html --open --no-cache",
+    "build": "parcel build index.html story.html",
     "generate:grownups": "node scripts/build.js",
     "generate:stories": "node scripts/build.js"
   },

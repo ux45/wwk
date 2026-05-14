@@ -188,6 +188,26 @@ h6 {
   display: inline-block;
 }
 
+.print-action-wrapper {
+  width: 100%;
+  margin-top: 30px;
+  order: 1;
+}
+
+.site-print-button {
+  background: transparent;
+  border: 1px solid #008197;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 0;
+}
+
+.site-print-button img {
+  display: block;
+  max-height: 32px;
+  width: auto;
+}
+
 .navbar-toggler .btn-close {
   display: none;
   /* Hide by default */
@@ -2585,7 +2605,7 @@ h6 {
   }
 }
 
-/* --- Grownups Page --- */
+/* --- Grownups and Learn & Explore Pagea --- */
 .grownups-page .hero-heading-2,
 .learn-page .hero-heading-2 {
   margin-bottom: 0;
@@ -2612,6 +2632,7 @@ h6 {
   border: 10px solid var(--panel-yellow);
   border-radius: 30px;
   padding: 0 30px;
+  margin-bottom: 50px;
 }
 
 .grownups-info-panel .headline,
@@ -2783,6 +2804,10 @@ h6 {
   text-align: center;
 }
 
+.learn-resource-card {
+  margin-bottom: 10px;
+}
+
 .grownups-resource-image,
 .learn-resource-image {
   width: 100%;
@@ -2802,6 +2827,11 @@ h6 {
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem);
   font-weight: 700;
   line-height: 1.35;
+}
+
+.learn-resource-link {
+  font-weight: normal;
+  margin-top: 6px;
 }
 
 .grownups-resource-link:hover,
@@ -2956,6 +2986,10 @@ h6 {
 
 #faqAccordionRight .hero-subheading a {
   color: var(--primary-orange);
+}
+
+.learn-resource-image {
+  box-shadow: none;
 }
 
 @media (min-width: 1439px) {

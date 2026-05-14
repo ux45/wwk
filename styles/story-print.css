@@ -1,0 +1,253 @@
+@media print {
+  @page {
+    size: letter portrait;
+    margin: 0.35in;
+  }
+
+  html,
+  body {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    position: relative;
+    font-size: 55%;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .site-header,
+  .page-content-wrapper {
+    width: 100%;
+    max-width: 1468px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .site-header {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  #storypage-heading {
+    margin: 0 0 50px;
+    line-height: 1.1;
+  }
+
+  .print-action-wrapper {
+    display: none !important;
+  }
+  .wwk-logo-icon {
+    max-height: 48px;
+    width: auto;
+    height: auto;
+    margin-top: 0;
+    margin-left: 0;
+  }
+  .logo-link {
+    margin-left: auto;
+  }
+  .site-navbar {
+    display: none !important;
+  }
+
+  .site-navbar .container-fluid {
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+  }
+
+  .navbar-expand-md {
+    max-width: none;
+    padding-left: 0;
+  }
+
+  .navbar-expand-md .navbar-toggler {
+    display: none !important;
+  }
+
+  .navbar-expand-md .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+
+  .navbar-expand-md .navbar-nav {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-right: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    display: flex;
+    padding: 5px 10px 5px 5px !important;
+    font-size: clamp(1.1rem, 1rem + 0.25vw, 1.5rem);
+  }
+
+  .navbar-nav .nav-item:first-child .nav-link {
+    padding-left: 0 !important;
+  }
+
+  .navbar-nav .nav-item:last-child .nav-link {
+    padding-right: 0 !important;
+  }
+
+  .navbar-nav.dot-separated .nav-item:not(:last-child) .nav-link::after {
+    content: "\2022";
+    display: inline-block !important;
+    margin: 0 5px 0 25px;
+    padding-left: 0;
+    color: orange;
+  }
+
+  .storypage-info-panel .row {
+    display: flex !important;
+    flex-wrap: wrap;
+  }
+
+  .storypage-info-panel .row > aside.col-12.col-lg-5 {
+    display: block !important;
+    flex: 0 0 auto;
+    order: 0;
+    width: 41.66666667%;
+  }
+
+  .storypage-info-panel .row > .col-12.col-lg-7 {
+    display: block !important;
+    flex: 0 0 auto;
+    order: 0;
+    width: 58.33333333%;
+  }
+
+  #storypage-heading {
+    margin: 0 0 38px;
+  }
+
+  .story-content-section {
+    display: block !important;
+    padding: 0;
+  }
+
+  .story-intro-mobile {
+    display: none !important;
+  }
+
+  .story-intro-desktop {
+    display: block !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .story-cover-image,
+  .listen-box,
+  .spotlight-box {
+    order: 0;
+    width: auto;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .story-description {
+    order: 0;
+    margin: 0 0 1.95rem;
+    font-size: 1.7rem;
+  }
+
+  .listen-box {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+    padding: 10px 21px 30px;
+  }
+
+  .listen-box .col-sm-3,
+  .listen-box .col-sm-9 {
+    width: 100%;
+    display: block;
+  }
+
+  .listen-box .teal-lg-label {
+    font-size: 2rem;
+  }
+
+  .listen-box .btn-wwk-orange,
+  .listen-box .transcript-btn {
+    font-size: 1.4rem;
+  }
+
+  .listen-box .transcript-btn {
+    display: block;
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .app-promo .btn-wwk-orange {
+    font-size: 1.3rem;
+  }
+
+  audio {
+    display: block;
+    width: 250px;
+    font-size: 1.75rem;
+    padding: 0;
+    margin: 8px 0 0 -10px;
+    box-sizing: border-box;
+    transform: scale(1);
+    max-width: 250px;
+  }
+
+  .app-promo .love-this-story {
+    margin-top: 25px;
+  }
+
+  .listen-box,
+  .spotlight-box,
+  .story-section,
+  .story-section-group,
+  .app-promo {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .spotlight-box {
+    margin-top: 12px;
+    margin-bottom: 0;
+    padding: 40px 21px 65px 36px;
+  }
+
+  .story-section-main-title,
+  .story-section-group-title {
+    display: block;
+    width: auto;
+    margin: 0 0 1.5rem;
+    font-size: 2.2rem;
+  }
+
+  .story-section,
+  .story-section-title,
+  .story-bullets,
+  .story-bullets li,
+  .story-section > p,
+  .story-section > div,
+  .story-section > ul,
+  .story-section > div.d-inline-block,
+  .app-promo > p,
+  .app-promo h4,
+  .app-promo .love-this-story,
+  .spotlight-box > div {
+    font-size: 1.7rem;
+  }
+
+  .story-section {
+    display: block;
+    width: auto;
+    margin: 0;
+  }
+
+  .story-section-title {
+    margin-top: 22px;
+  }
+
+  .story-section-group {
+    margin-top: 2rem;
+  }
+}
